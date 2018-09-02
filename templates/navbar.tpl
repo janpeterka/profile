@@ -18,7 +18,7 @@
               	Moje projekty
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="http://ketocalc.janpeterka.eu">Ketokalkulačka</a>
+              <a class="dropdown-item" href="http://ketocalc.janpeterka.eu" target="_blank">Ketokalkulačka</a>
             </div>
           </li>
 
@@ -31,21 +31,6 @@
             </div>
           </li>
 
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right ml-auto" >
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Odhlásit se</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link small" href="/changelog">Změny</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link small" href="/feedback">Připomínky</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link small" href="/help">Nápověda</a>
-          </li>
         </ul>
 
     </div>
