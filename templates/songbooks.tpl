@@ -7,10 +7,6 @@
 {% block style %}
     <style type="text/css" media="screen">
 
-    body{
-        background-color: #eee
-
-    }
     div.songbook{
         border-radius: 6px;
         padding: 10px 30px;
@@ -32,15 +28,29 @@
 
 {% block content %}
     {% include('navbar.tpl') %}
-    <div class="container">
+    <div class="container" style="margin-top:20px">
         <div class="main">
             <table>
             <td class="col-2"></td>
 
-            <td class="col-8">
-                <div class="songbook">
-                    <a class="songbook" href="/static/files/songbooks/songbook_main.pdf" download> Hlavní zpěvník [PDF] </a>
-                </div>
+            <td class="col-10">
+
+            {% for folder in folders %}
+
+            	<div class="row">
+
+	                <div class="songbook col-5">
+	                    <a class="songbook" href="/{{ folder.name }}.pdf" download> {{ folder.name }} [.pdf] </a>
+	                </div>
+	                <div class="songbook col-5">
+	                    <a class="songbook" href="/{{ folder.name }}.docx" download> {{ folder.name }} [.docx] </a>
+	                </div>
+
+            	</div>
+			
+            {% endfor %}
+
+
             </td>
 
             <td class="col-2"></td>

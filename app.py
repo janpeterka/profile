@@ -6,8 +6,27 @@
 from flask import Flask, render_template as template
 # from flask import request, redirect
 # from flask import flash
+from flask import send_from_directory, send_file
+
+# from werkzeug import SharedDataMiddleware
+
+import os
+from pathlib import Path
+
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 app = Flask(__name__)
+
+# app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {'/': os.path.join(os.path.dirname(__file__), 'public')})
+
+# SRCDIR = os.path.dirname(os.path.abspath(__file__))
+DATADIR = os.path.join(PROJECT_ROOT, 'public/songbooks/')
+
+
+class Folder(object):
+    def __init__(self, path, name=None):
+        self.path = path
+        self.name = name
 
 
 @app.route('/', methods=['GET'])
@@ -16,8 +35,25 @@ def main():
 
 
 @app.route('/songbooks', methods=['GET'])
+@app.route('/zpevniky', methods=['GET'])
 def showSongbooks():
-    return template('songbooks.tpl')
+    folders = []
+    for folder in os.walk(DATADIR):
+        folders.append(Folder(folder[0]))
+
+    del folders[0]
+
+    for folder in folders:
+        folder.name = Path(folder.path).name
+
+    folders.sort(key=lambda x: x.name, reverse=False)
+
+    return template('songbooks.tpl', folders=folders)
+
+
+@app.route('/<name>', methods=['GET'])
+def showFile(name):
+    return send_file(DATADIR + name.split('.')[0] + '/' + name, attachment_filename=name)
 
 
 @app.route('/portfolio', methods=['GET'])

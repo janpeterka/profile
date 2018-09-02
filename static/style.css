@@ -1,38 +1,5 @@
-input{
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-.form-inline > * {
-   margin: 5px 3px;
-}
-
-.navbar{
-	margin-bottom: 15px;
-}
-
-.problem{
-	color: red;
-}
-
-.changelog{
-	margin: 10px;
-}
-
-.remove {
-    cursor: pointer;
-}
-
-.flashes {
-    -moz-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Opera */
-    animation: cssAnimation 0s ease-in 5s forwards;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+body {
+    background-color: #eee;
 }
 
 .footer {
@@ -52,19 +19,4 @@ input{
     color: #222222;
     font-size: 14px;
     text-align: center;
-}
-
-@keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        overflow:hidden;
-    }
-}
-@-webkit-keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        visibility:hidden;
-    }
 }
