@@ -1,3 +1,4 @@
+
 {% extends "base.tpl" %}
 {% block title %}
     Zpěvníky
@@ -5,17 +6,23 @@
 
 {% block style %}
     <style type="text/css" media="screen">
+
+    body{
+        background-color: #eee
+
+    }
     div.songbook{
-        border-radius: 20px;
+        border-radius: 6px;
         padding: 10px 30px;
         margin: 5px;
-        border: 2px solid black;
-
+        background-color: #fff;
+        box-shadow: 0 0 0 1px rgba(89,105,129,.1),0 1px 3px 0 rgba(89,105,129,.1),0 1px 2px 0 rgba(0,0,0,.05);
     }
 
     a.songbook{
         color: black;
     }
+
     </style>    
 {% endblock %}
 

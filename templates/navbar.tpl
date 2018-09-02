@@ -37,4 +37,4 @@
 
   </div>
 </nav>
-{% include('flashing') %}
+{# {% include('flashing') %} #}
