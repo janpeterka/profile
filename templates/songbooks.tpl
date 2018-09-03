@@ -11,12 +11,18 @@
         border-radius: 6px;
         padding: 10px 30px;
         margin: 5px;
-        background-color: #fff;
+        /*background-color: #fff;*/
+        background-color: #eff6ff;
+
         box-shadow: 0 0 0 1px rgba(89,105,129,.1),0 1px 3px 0 rgba(89,105,129,.1),0 1px 2px 0 rgba(0,0,0,.05);
     }
 
     a.songbook{
         color: black;
+    }
+
+    a.songbook i{
+        margin-right: 7px;
     }
 
     </style>    
@@ -40,10 +46,10 @@
             	<div class="row">
 
 	                <div class="songbook col-5">
-	                    <a class="songbook" href="/{{ folder.name }}.pdf" download> {{ folder.name }} [.pdf] </a>
+	                    <a class="songbook" href="/{{ folder.name }}.pdf" download> <i class="fas fa-download"></i> {{ folder.name }} [.pdf] </a>
 	                </div>
 	                <div class="songbook col-5">
-	                    <a class="songbook" href="/{{ folder.name }}.docx" download> {{ folder.name }} [.docx] </a>
+	                    <a class="songbook" href="/{{ folder.name }}.docx" download> <i class="fas fa-download"></i> {{ folder.name }} [.docx] </a>
 	                </div>
 
             	</div>
