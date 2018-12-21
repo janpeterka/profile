@@ -63,16 +63,15 @@
                         <span class="col-4">
                             
                             <span class="download">
-                                <a class="songbook" href="/{{ folder.name }}.pdf" download> <i class="fas fa-file-pdf"></i></a>
+                                <a class="songbook" href="/songbooks/{{ folder.name }}.pdf" download> <i class="fas fa-file-pdf"></i></a>
                             </span>
 
                             <span class="download">
-                                <a class="songbook" href="/{{ folder.name }}.docx" download><i class="fas fa-file-word"></i></a>
+                                <a class="songbook" href="/songbooks/{{ folder.name }}.docx" download><i class="fas fa-file-word"></i></a>
                             </span>
 
                         </span>
 
-                    {# </div> #}
             	</div>
 			
             {% endfor %}

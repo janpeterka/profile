@@ -1,0 +1,7 @@
+<ASX version ="3.0">
+  <TITLE>Stream</TITLE>
+  <ENTRY>
+    <!-- <REF HREF="http://192.168.1.19:8080/video" /> -->
+    <REF HREF="http://127.0.0.1:8080" />
+  </ENTRY>
+</ASX>

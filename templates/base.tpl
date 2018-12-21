@@ -2,7 +2,7 @@
 <html>
 <head>
     {% block head %}
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Bootstrap -->
@@ -21,6 +21,7 @@
     
     <!-- My style -->
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    {% block links %} {% endblock %}
    
     {% block style %} {% endblock %}
     {% block script %} {% endblock %}
