@@ -6,7 +6,8 @@
 from flask import Flask, render_template as template
 # from flask import request, redirect
 # from flask import flash
-from flask import send_from_directory, send_file
+# from flask import send_from_directory
+from flask import send_file
 
 # from werkzeug import SharedDataMiddleware
 
@@ -66,32 +67,35 @@ def downloadSongbookFile(name):
 @app.route('/mms', methods=['GET'])
 def showMMS():
 
-    # Zpracuj soubory do složek
-    for file in os.listdir(MMS_DIR):
-        if not os.path.isdir(MMS_DIR + file):  # je to opravdu file
-            file_path = MMS_DIR + file
-            file_name = file.split('.')[0]
-            folder_path = MMS_DIR + file_name + "/"
+    # Zpracuj soubory do složek - OLD
+    # for file in os.listdir(MMS_DIR):
+    #     if not os.path.isdir(MMS_DIR + file):  # je to opravdu file
+    #         file_path = MMS_DIR + file
+    #         file_name = file.split('.')[0]
+    #         folder_path = MMS_DIR + file_name + "/"
 
-            # print(MMS_DIR + file)
+    #         # print(MMS_DIR + file)
+    #         print(folder_path)
 
-            # WIP - vytvoř složku
-            try:
-                os.mkdir(folder_path)
-                # print("Created directory {}".format(MMS_DIR + file.split('.')[0]))
-            except OSError:
-                print("Cannot create directory {}".format(folder_path))
+    #         # Vytvoř složku
+    #         try:
+    #             os.mkdir(folder_path)
+    #             # print("Created directory {}".format(MMS_DIR + file.split('.')[0]))
+    #         except OSError:
+    #             print("Cannot create directory {}".format(folder_path))
 
-            # WIP - dej do ní soubor
-            try:
-                os.rename(file_path, folder_path + file)
-                # print("Moved {} to {}".format(MMS_DIR + file, MMS_DIR + file.split('.')[0] + "/" + file))
-            except OSError:
-                print("Cannot move {} to {}".format(file_path, folder_path + file))
+    #         # Dej do ní soubor
+    #         try:
+    #             os.rename(file_path, folder_path + file)
+    #             # print("Moved {} to {}".format(MMS_DIR + file, MMS_DIR + file.split('.')[0] + "/" + file))
+    #         except OSError:
+    #             print("Cannot move {} to {}".format(file_path, folder_path + file))
 
-            # WIP - udělej konverze
-            # file_audio = getAudio(file_path, file_name)
-            # print(file_audio)
+    #         # WIP - udělej konverze
+
+    #         # audio - get mp3
+    #         file_audio = getAudio(folder_path + file, file_name)
+    #         file_video = getVideo(folder_path + file, file_name)
 
     # Načti a zobraz složky
     folders = []
@@ -115,7 +119,7 @@ def downloadMMSFile(name):
     return send_file(MMS_DIR + name.split('.')[0] + "/" + name, attachment_filename=name)
 
 
-def convertVideo(file, file_name, file_format):
+def getVideo(file, file_name, file_format="flv"):
     stream = ffmpeg.input(file)
     # stream = ffmpeg.hflip(stream)
 
@@ -161,4 +165,4 @@ def error500(error):
 
 if __name__ == "__main__":
     # app.wsgi_app = SessionMiddleware(app.wsgi_app, session_opts)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=False)

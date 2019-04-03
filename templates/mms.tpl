@@ -58,8 +58,7 @@
     {% include('navbar.tpl') %}
     <div class="container main">
         <span class="stream col-6">
-            <!-- <embed src="/templates/lanstream.asx"> -->
-            <video width="700" src="http://127.0.0.1:8080" autoplay type="video/ogg" codecs="theora"></video>   
+            <img src="http://jpeterka.cz:5500/video" alt="video_2" style="width: 700px; margin: 50px">
         </span>
 
         <span class="downloads col-6">
@@ -71,22 +70,18 @@
 
                     <span class="col-6">
     
-                        <!-- Audio -->
-                        <span class="download">
-                            <a class="audio" href="/mms/{{ folder.name }}.mp3" download> <i class="fas fa-file-audio"></i> mp3 </a>
-                        </span>
-
                         <!-- Video -->
                         <span class="download">
                             <a class="video" href="/mms/{{ folder.name }}.mkv" download> <i class="fas fa-file-video"></i> mkv (original)</a>
                         </span>
 
-<!--                         <span class="download">
-                            <a class="video" href="/mms/{{ folder.name }}.mp4" download> mp4 <i class="fas fa-file-video"></i> </a>
-                        </span> -->
-
                         <span class="download">
-                            <a class="video" href="/mms/{{ folder.name }}.avi" download> avi <i class="fas fa-file-video"></i> </a>
+                            <a class="video" href="/mms/{{ folder.name }}.flv" download> flv <i class="fas fa-file-video"></i> </a>
+                        </span>
+
+                        <!-- Audio -->
+                        <span class="download">
+                            <a class="audio" href="/mms/{{ folder.name }}.mp3" download> <i class="fas fa-file-audio"></i> mp3 </a>
                         </span>
 
                     </span>
