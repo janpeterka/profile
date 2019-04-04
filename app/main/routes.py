@@ -1,57 +1,55 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 # run by pyserver
 
-from flask import Flask, render_template as template
-# from flask import request, redirect
-# from flask import flash
-# from flask import send_from_directory
-from flask import send_file
-
-# from werkzeug import SharedDataMiddleware
 
 import os
+from flask import Blueprint
+
+from flask import render_template as template
+# from flask import request, redirect
+# from flask import jsonify
+from flask import send_file
+# from flask import abort
+
+# from flask import current_app as application
+
+# import requests
+# import json
+
+from app import models
+
 from pathlib import Path
-
-import subprocess
-
+# import subprocess
 import ffmpeg
 
+
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
-
-app = Flask(__name__)
-
-# app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {'/': os.path.join(os.path.dirname(__file__), 'public')})
-
-# SRCDIR = os.path.dirname(os.path.abspath(__file__))
 SONGBOOKS_DIR = os.path.join(PROJECT_ROOT, 'public/songbooks/')
 MMS_DIR = os.path.join(PROJECT_ROOT, 'public/mms/')
 
-
-class Folder(object):
-    def __init__(self, path, name=None):
-        self.path = path
-        self.name = name
+main_blueprint = Blueprint('main', __name__)
 
 
-@app.route('/', methods=['GET'])
+# MAIN
+@main_blueprint.route('/', methods=['GET'])
 def main():
     return template('dashboard.tpl')
 
 
-@app.route('/bunkrs', methods=['GET'])
-def show_bunkrs():
-    return template('bunkrs.tpl', bunkrs=[])
+@main_blueprint.route('/bunkrs', methods=['GET'])
+def showBunkrs():
+    bunkrs = models.Bunkr.loadAll()
+    return template('bunkrs.tpl', bunkrs=bunkrs)
 
 
-@app.route('/songbooks', methods=['GET'])
-@app.route('/zpevniky', methods=['GET'])
+@main_blueprint.route('/songbooks', methods=['GET'])
+@main_blueprint.route('/zpevniky', methods=['GET'])
 def showSongbooks():
     folders = []
     for folder in os.walk(SONGBOOKS_DIR):
         if os.path.isdir(folder[0]):
-            folders.append(Folder(folder[0]))
+            folders.append(models.Folder(folder[0]))
 
     del folders[0]
 
@@ -63,13 +61,13 @@ def showSongbooks():
     return template('songbooks.tpl', folders=folders)
 
 
-@app.route('/songbooks/<name>', methods=['GET'])
+@main_blueprint.route('/songbooks/<name>', methods=['GET'])
 def downloadSongbookFile(name):
     return send_file(SONGBOOKS_DIR + name.split('.')[0] + "/" + name, attachment_filename=name)
 
 
-@app.route('/mms2018', methods=['GET'])
-@app.route('/mms', methods=['GET'])
+@main_blueprint.route('/mms2018', methods=['GET'])
+@main_blueprint.route('/mms', methods=['GET'])
 def showMMS():
 
     # Zpracuj soubory do složek - OLD
@@ -119,7 +117,7 @@ def showMMS():
     return template('mms.tpl', folders=folders)
 
 
-@app.route('/mms/<name>', methods=['GET'])
+@main_blueprint.route('/mms/<name>', methods=['GET'])
 def downloadMMSFile(name):
     return send_file(MMS_DIR + name.split('.')[0] + "/" + name, attachment_filename=name)
 
@@ -147,27 +145,11 @@ def getAudio(file, file_name, file_format='mp3'):
     ffmpeg.run(stream)
 
 
-@app.route('/pexeso', methods=['GET'])
+@main_blueprint.route('/pexeso', methods=['GET'])
 def showPexeso():
     return template('pexeso.tpl')
 
 
-@app.route('/portfolio', methods=['GET'])
+@main_blueprint.route('/portfolio', methods=['GET'])
 def showPortfolio():
     return template('portfolio.tpl')
-
-
-# ERROR
-@app.errorhandler(404)
-def error404(error):
-    return 'Tady nic není (Err404)'
-
-
-@app.errorhandler(500)
-def error500(error):
-    return 'Někde se stala chyba (Err500)'
-
-
-if __name__ == "__main__":
-    # app.wsgi_app = SessionMiddleware(app.wsgi_app, session_opts)
-    app.run(host='0.0.0.0', debug=False)
