@@ -50,8 +50,9 @@ def showSongbooks():
     for folder in os.walk(SONGBOOKS_DIR):
         if os.path.isdir(folder[0]):
             folders.append(models.Folder(folder[0]))
-
-    del folders[0]
+    
+    if len(folders) > 0:
+        del folders[0]
 
     for folder in folders:
         folder.name = Path(folder.path).name
@@ -105,9 +106,10 @@ def showMMS():
 
     for folder in os.walk(MMS_DIR):
         if os.path.isdir(folder[0]):  # je to opravdu folder
-            folders.append(Folder(folder[0]))
+            folders.append(models.Folder(folder[0]))
 
-    del folders[0]
+    if len(folders) > 0:
+        del folders[0]
 
     for folder in folders:
         folder.name = Path(folder.path).name
