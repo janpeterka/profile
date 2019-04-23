@@ -34,7 +34,7 @@
                 </tr>
             {% for bunkr in bunkrs %}
                 <tr>
-                    <td>{{ bunkr.name }}</td>
+                    <td><a href="{{ bunkr.link }}">{{ bunkr.name }}</a></td>
                     <td>{{ bunkr.sale_date}}</td>
                     <td>{{ bunkr.katastr }}</td>
                     <td>{{ bunkr.obec }}</td>

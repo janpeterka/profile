@@ -18,13 +18,14 @@ def create_database():
                     kraj varchar(255),
                     uzemi varchar(255),
                     min_sale_price integer,
-                    created_at datetime
+                    created_at datetime,
+                    link varchar(255)
                 )
               ''')
 
     conn.commit()
     conn.close()
-    print('Database created.')
+    print('Database created...')
 
 
 class Bunkr(db.Model):
@@ -32,6 +33,8 @@ class Bunkr(db.Model):
 
     name = db.Column(db.String(255), primary_key=True)
     sale_date = db.Column(db.String(255))
+
+    link = db.Column(db.String(255))
 
     katastr = db.Column(db.String(255))
     obec = db.Column(db.String(255))

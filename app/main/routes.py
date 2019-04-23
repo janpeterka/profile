@@ -19,14 +19,16 @@ from flask import send_file
 
 from app import models
 
+from app.bunkrs.get_ropiky import get_links
+
 from pathlib import Path
 # import subprocess
 import ffmpeg
 
 
-PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
-SONGBOOKS_DIR = os.path.join(PROJECT_ROOT, 'public/songbooks/')
-MMS_DIR = os.path.join(PROJECT_ROOT, 'public/mms/')
+BLUEPRINT_ROOT = os.path.dirname(os.path.realpath(__file__))
+SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, '../public/songbooks/')
+MMS_DIR = os.path.join(BLUEPRINT_ROOT, '../public/mms/')
 
 main_blueprint = Blueprint('main', __name__)
 
@@ -39,6 +41,7 @@ def main():
 
 @main_blueprint.route('/bunkrs', methods=['GET'])
 def showBunkrs():
+    get_links('http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs')
     bunkrs = models.Bunkr.loadAll()
     return template('bunkrs.tpl', bunkrs=bunkrs)
 
@@ -50,7 +53,7 @@ def showSongbooks():
     for folder in os.walk(SONGBOOKS_DIR):
         if os.path.isdir(folder[0]):
             folders.append(models.Folder(folder[0]))
-    
+
     if len(folders) > 0:
         del folders[0]
 
