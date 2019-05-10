@@ -1,4 +1,5 @@
 __pycache__/
 v_*/
 scripts/
+**/*.todo
 

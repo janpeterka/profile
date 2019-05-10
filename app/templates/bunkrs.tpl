@@ -21,6 +21,9 @@
     {% include('navbar.tpl') %}
     <div class="container">
         <div class="main">
+            
+            <button class="btn"><a href="/get_bunkrs">Načíst nové</a></button>
+
             <table class="table">
                 <tr>
                     <th>název</th>
@@ -31,6 +34,7 @@
                     <th>území</th>
                     <th>minimální cena</th>
                     <th>přidáno dne</th>
+                    <th>offer_type</th>
                 </tr>
             {% for bunkr in bunkrs %}
                 <tr>
@@ -41,10 +45,11 @@
                     <td>{{ bunkr.kraj }}</td>
                     <td>{{ bunkr.uzemi }}</td>
                     <td>{{ bunkr.min_sale_price }}</td>
-                    <td>{{ bunkr.create_at }}</td>
+                    <td>{{ bunkr.created_at.strftime('%d.%m.%Y') }}</td>
+                    <td>{{ bunkr.offer_type }}</td>
                 </tr>
             {% endfor %}   
-            </table>     	
+            </table>
         </div>
     </div>
 {% endblock %}

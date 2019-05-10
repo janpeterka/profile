@@ -1,10 +1,9 @@
-import re
+# import re
 
-from app.bunkrs.scrape import get_html
+from app.bunkrs import scrape
+# from app.bunkrs.scrape import get_html, is_detail_link
 
 from app import models
-
-# from app.models import Bunkr
 
 # from app.models import create_session
 
@@ -16,26 +15,15 @@ SALE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs'
 PREPARE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=prp&up=&typ=bs'
 
 
-def is_detail_link(link):
-    pattern = re.compile("(https?://)?[a-z0-9./?=&]+&det=[0-9]+")
-    # pattern = re.compile("https?://[a-z0-9./?=&]+&det=[0-9]+")
-    return pattern.match(link)
-
-
-def get_links(url):
-    html = get_html(url)
+def get_links(url, offer_type="sale"):
+    html = scrape.get_html(url)
     for link in html.select('a'):
-        if is_detail_link(link['href']) and len(link.findChildren('img')) == 0:
+        if scrape.is_detail_link(link['href']) and len(link.findChildren('img')) == 0:
             bunkr_url = 'http://www.annm.army.cz/' + link['href']
-            print("OK: {0}".format(bunkr_url))
-            get_bunkr_data(html=get_html(bunkr_url), bunkr_url=bunkr_url)
-
-    bunkrs = models.Bunkr.loadAll()
-    for bunkr in bunkrs:
-        print(bunkr.name)
+            get_bunkr_data(html=scrape.get_html(bunkr_url), bunkr_url=bunkr_url, offer_type=offer_type)
 
 
-def get_bunkr_data(html, bunkr_url, write=False, debug=False):
+def get_bunkr_data(html, bunkr_url, write=False, debug=False, offer_type="sale"):
     bunkr_data = html.find('div', class_='textvlevo')
 
     bunkr = models.Bunkr()
@@ -58,6 +46,7 @@ def get_bunkr_data(html, bunkr_url, write=False, debug=False):
     bunkr.kraj = bunkr_data_table_rows[3].find('td').contents[1]
     bunkr.uzemi = bunkr_data_table_rows[6].find('td').contents[1]
     bunkr.min_sale_price = bunkr_data_table_rows[7].find('td').contents[1]
+    bunkr.offer_type = offer_type
     try:
         bunkr.save()
     except Exception:
@@ -67,6 +56,6 @@ def get_bunkr_data(html, bunkr_url, write=False, debug=False):
         bunkr.print_bunkr()
 
 
-# session.rollback()
-# session.close()
-# get_links(get_html(SALE_DOMAIN))
+def main():
+    get_links(SALE_DOMAIN, offer_type="sale")
+    get_links(PREPARE_DOMAIN, offer_type="prepare")

@@ -19,8 +19,6 @@ from flask import send_file
 
 from app import models
 
-from app.bunkrs.get_ropiky import get_links
-
 from pathlib import Path
 # import subprocess
 import ffmpeg
@@ -37,13 +35,6 @@ main_blueprint = Blueprint('main', __name__)
 @main_blueprint.route('/', methods=['GET'])
 def main():
     return template('dashboard.tpl')
-
-
-@main_blueprint.route('/bunkrs', methods=['GET'])
-def showBunkrs():
-    get_links('http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs')
-    bunkrs = models.Bunkr.loadAll()
-    return template('bunkrs.tpl', bunkrs=bunkrs)
 
 
 @main_blueprint.route('/songbooks', methods=['GET'])

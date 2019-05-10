@@ -37,6 +37,10 @@ def create_app():
     from app.main import create_module as main_create_module
     main_create_module(application)
 
+    # Main module
+    from app.bunkrs import create_module as bunkrs_create_module
+    bunkrs_create_module(application)
+
     # Auth module
     # from app.auth import create_module as auth_create_module
     # auth_create_module(application)

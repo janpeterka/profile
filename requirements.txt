@@ -4,6 +4,8 @@ Flask-SQLAlchemy
 
 pathlib
 
+mysqlclient
+
 ffmpeg-python
 
 gunicorn

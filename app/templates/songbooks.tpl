@@ -1,4 +1,3 @@
-
 {% extends "base.tpl" %}
 {% block title %}
     Zpěvníky
@@ -56,26 +55,30 @@
             {% for folder in folders %}
 
             	<div class="row col-8">
-                        <span class="songbook col-8" >
-                            {{ folder.name }}
+                    <span class="songbook col-8" >
+                        {{ folder.name }}
+                    </span>
+
+                    <span class="col-4">
+                        
+                        <span class="download">
+                            <a class="songbook" href="/songbooks/{{ folder.name }}.pdf" download> <i class="fas fa-file-pdf"></i></a>
                         </span>
 
-                        <span class="col-4">
-                            
-                            <span class="download">
-                                <a class="songbook" href="/songbooks/{{ folder.name }}.pdf" download> <i class="fas fa-file-pdf"></i></a>
-                            </span>
-
-                            <span class="download">
-                                <a class="songbook" href="/songbooks/{{ folder.name }}.docx" download><i class="fas fa-file-word"></i></a>
-                            </span>
-
+                        <span class="download">
+                            <a class="songbook" href="/songbooks/{{ folder.name }}.docx" download><i class="fas fa-file-word"></i></a>
                         </span>
 
+                    </span>
             	</div>
 			
             {% endfor %}
 
+        <div style="margin-left: 10px; margin-top: 10px">
+            a další zpěvníky, které mám rád: <br>
+            <a href="https://nerez.szm.com/nerez.pdf">Nerez</a> <br>
+            <a href="https://navarova.szm.com/navarova.pdf">Navarová</a> <br>
+        </div>
             
         </div>
     </div>
