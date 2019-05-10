@@ -41,6 +41,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/songbooks">Zpěvníky</a>
+              <a class="dropdown-item" href="/bunkrs">Bunkrs</a>
             </div>
           </li>
 
