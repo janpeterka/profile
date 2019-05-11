@@ -1,15 +1,5 @@
-# import re
-
 from app.bunkrs import scrape
-# from app.bunkrs.scrape import get_html, is_detail_link
-
-from app import models
-
-# from app.models import create_session
-
-# session = create_session()
-# from scrape import get_raw_html, save_html
-
+from app.bunkrs import models
 
 SALE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs'
 PREPARE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=prp&up=&typ=bs'

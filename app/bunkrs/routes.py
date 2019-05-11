@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # run by pyserver
 
-
 import os
 from flask import Blueprint
 from flask import redirect
@@ -26,9 +25,9 @@ def showBunkrs(type=None):
     elif type == "prepare":
         bunkrs = models.Bunkr.loadPrepare()
     else:
-        bunkrs = models.Bunkr.loadSale()
+        bunkrs = models.Bunkr.loadAll()
 
-    return template('bunkrs.tpl', bunkrs=bunkrs)
+    return template('bunkrs/bunkrs.tpl', bunkrs=bunkrs)
 
 
 @bunkrs_blueprint.route('/get_bunkrs', methods=['GET'])

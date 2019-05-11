@@ -3,34 +3,82 @@
     Portfolio
 {% endblock %}
 
-{% block style %}
-    <style type="text/css" media="screen">
-    .main{
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
-    }
-    </style>    
+{% block style %} 
 {% endblock %}
 
 {% block script %}
-
 {% endblock %}
 
 {% block content %}
     {% include('navbar.tpl') %}
     <div class="container">
         <div class="main">
-            <table>
-            <td class="col-2"></td>
+            {% import "portfolio-item.tpl" as item %}
 
-            <td class="col-8">
-                <h1>Na portfoliu se usilovně pracuje</h1>
-            </td>
+            <div class="portfolio-item">
+                {{ item.title(
+                    "ketocalc"
+                    )
+                }}
 
-            <td class="col-2"></td>
-            </table>
-        	
+                {{ item.about(
+                    "Aplikace pro výpočet a správu surovin, receptů a diet ketogenní diety"
+                    )
+                }}
+
+                {{ item.motivation([
+                    "projekt na předmět Databázové aplikace",
+                    "na žádost známé, které podobný nástroj chyběl",
+                    "možnost vytvořit první větší projekt a naučit se, co všechno je pro něj třeba"
+                    ])
+                }}
+
+                {{ item.technology({
+                    "Databáze": [
+                        "MySQL"
+                        ],
+                    "Backend": ["
+                        Python 3",
+                        "Flask",
+                        "SQLAlchemy"
+                        ],
+                    "Frontend": [
+                        "jQuery",
+                        "Bootstrap"
+                        ],
+                    "Administrace": [
+                        "Heroku",
+                        "gunicorn",
+                        "nginx", 
+                        "FreeBSD->Debian",
+                        "git (via github)"
+                        ]
+                 })
+                }}
+
+                {{ item.functions([
+                        "výpočet receptu (pomocí numpy)",
+                        "registrace a přihlašování"
+                    ])
+                }}
+
+                {{ item.learned([
+                    "Napojení na MySQL pomocí ORM SQLAlchemy",
+                    "Framework Flask",
+                    "prevence SQL injection ve Flasku",
+                    "Google OAuth",
+                    "základy AJAX",
+                    "posílání emailů z webové aplikace",
+                    "deploy over Heroku",
+                    "deploy na Flask-Gunicorn webserveru na domácím FreeBSD/Debian serveru (včetně nastavení nginx)"
+                    ])
+                }}
+
+                {{ item.time(
+                    "cca 150 hodin"
+                    )
+                }}
+            </div>
         </div>
     </div>
 {% endblock %}
