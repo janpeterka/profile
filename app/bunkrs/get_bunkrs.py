@@ -16,31 +16,37 @@ def get_links(url, offer_type="sale"):
 def get_bunkr_data(html, bunkr_url, write=False, debug=False, offer_type="sale"):
     bunkr_data = html.find('div', class_='textvlevo')
 
-    bunkr = models.Bunkr()
+    bunkr = models.Bunkr.load(bunkr_data.select('h3')[0].string)
+    if bunkr is not None:
+        bunkr.offer_type = offer_type
+        bunkr.edit()
 
-    bunkr.name = bunkr_data.select('h3')[0].string
+    else:
+        bunkr = models.Bunkr()
 
-    # table
-    bunkr_data_table = bunkr_data.select('table')[0]
-    if debug:
-        print(bunkr_data_table)
+        bunkr.name = bunkr_data.select('h3')[0].string
 
-    bunkr_data_table_rows = bunkr_data_table.findAll('tr')
-    if debug:
-        print(bunkr_data_table_rows[0])
+        # table
+        bunkr_data_table = bunkr_data.select('table')[0]
+        if debug:
+            print(bunkr_data_table)
 
-    bunkr.link = bunkr_url
-    bunkr.sale_date = bunkr_data_table_rows[0].select('td')[1].contents[1]
-    bunkr.katastr = bunkr_data_table_rows[1].find('td').contents[1]
-    bunkr.obec = bunkr_data_table_rows[2].find('td').contents[1]
-    bunkr.kraj = bunkr_data_table_rows[3].find('td').contents[1]
-    bunkr.uzemi = bunkr_data_table_rows[6].find('td').contents[1]
-    bunkr.min_sale_price = bunkr_data_table_rows[7].find('td').contents[1]
-    bunkr.offer_type = offer_type
-    try:
-        bunkr.save()
-    except Exception:
-        pass
+        bunkr_data_table_rows = bunkr_data_table.findAll('tr')
+        if debug:
+            print(bunkr_data_table_rows[0])
+
+        bunkr.link = bunkr_url
+        bunkr.sale_date = bunkr_data_table_rows[0].select('td')[1].contents[1]
+        bunkr.katastr = bunkr_data_table_rows[1].find('td').contents[1]
+        bunkr.obec = bunkr_data_table_rows[2].find('td').contents[1]
+        bunkr.kraj = bunkr_data_table_rows[3].find('td').contents[1]
+        bunkr.uzemi = bunkr_data_table_rows[6].find('td').contents[1]
+        bunkr.min_sale_price = bunkr_data_table_rows[7].find('td').contents[1]
+        bunkr.offer_type = offer_type
+        try:
+            bunkr.save()
+        except Exception:
+            pass
 
     if write:
         bunkr.print_bunkr()

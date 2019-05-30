@@ -54,13 +54,21 @@ class Bunkr(db.Model):
         except Exception:
             db.session.rollback()
 
-    def print_bunkr(self):
-        print(self.name)
-        print(self.sale_date)
-        print(self.katastr)
-        print(self.obec)
-        print(self.kraj)
-        print(self.uzemi)
-        print(self.min_sale_price)
-        print(self.created_at)
-        print('\n')
+    def edit(self):
+        try:
+            db.session.commit()
+            return True
+        except Exception:
+            # application.logger.error("Edit error: {}".format(e))
+            return False
+
+    # def print_bunkr(self):
+    #     print(self.name)
+    #     print(self.sale_date)
+    #     print(self.katastr)
+    #     print(self.obec)
+    #     print(self.kraj)
+    #     print(self.uzemi)
+    #     print(self.min_sale_price)
+    #     print(self.created_at)
+    #     print('\n')

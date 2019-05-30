@@ -3,7 +3,12 @@
     Portfolio
 {% endblock %}
 
-{% block style %} 
+{% block style %}
+<style>
+.portfolio-item { 
+    font-family: Nunito; 
+}
+</style>
 {% endblock %}
 
 {% block script %}

@@ -10,9 +10,9 @@
 
         <ul class="nav navbar-nav navbar-center">
           
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="/portfolio">Portfolio</a>
-            </li> -->
+            </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,7 +23,8 @@
             </div>
           </li>
 
-          <li class="nav-item dropdown">
+          {#
+           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Školní
             </a>
@@ -32,8 +33,8 @@
               <a class="dropdown-item" href="/mms">Multimediální systém - seminární práce</a>
               <a class="dropdown-item" href="/pexeso">Pexeso - seminární práce</a>
             </div>
-
           </li>
+          #}
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
