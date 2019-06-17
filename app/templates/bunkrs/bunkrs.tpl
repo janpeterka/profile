@@ -10,11 +10,11 @@
         margin-right: auto;
         margin-top: 20px;
     }
-    </style>    
+    </style>
 {% endblock %}
 
 {% block script %}
-
+    <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -24,18 +24,27 @@
             
             <button class="btn"><a href="/get_bunkrs">Načíst nové</a></button>
 
-            <table class="table">
+            <table
+              class="table"
+              data-toggle="table"
+              data-sort-class="table-active"
+              data-sortable="true"
+              {# data-height="460" #}
+              >
+              <thead>
                 <tr>
-                    <th>název</th>
-                    <th>datum prodeje</th>
+                    <th data-field="name">název</th>
+                    <th data-sortable="true">datum prodeje</th>
                     <th>katastr</th>
                     <th>obec</th>
                     <th>kraj</th>
                     <th>území</th>
                     <th>minimální cena</th>
-                    <th>přidáno dne</th>
-                    <th>offer_type</th>
+                    <th data-sortable="true">přidáno dne</th>
+                    <th data-sortable="true">zdroj</th>
                 </tr>
+              </thead>
+
             {% for bunkr in bunkrs %}
                 <tr>
                     <td><a href="{{ bunkr.link }}">{{ bunkr.name }}</a></td>
@@ -49,6 +58,7 @@
                     <td>{{ bunkr.offer_type }}</td>
                 </tr>
             {% endfor %}   
+
             </table>
         </div>
     </div>

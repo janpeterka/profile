@@ -1,16 +1,16 @@
-from app.bunkrs import scrape
 from app.bunkrs import models
+from app.utilities import scraping
 
 SALE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs'
 PREPARE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=prp&up=&typ=bs'
 
 
 def get_links(url, offer_type="sale"):
-    html = scrape.get_html(url)
+    html = scraping.get_html(url)
     for link in html.select('a'):
-        if scrape.is_detail_link(link['href']) and len(link.findChildren('img')) == 0:
+        if scraping.is_link(link['href']) and len(link.findChildren('img')) == 0:
             bunkr_url = 'http://www.annm.army.cz/' + link['href']
-            get_bunkr_data(html=scrape.get_html(bunkr_url), bunkr_url=bunkr_url, offer_type=offer_type)
+            get_bunkr_data(html=scraping.get_html(bunkr_url), bunkr_url=bunkr_url, offer_type=offer_type)
 
 
 def get_bunkr_data(html, bunkr_url, write=False, debug=False, offer_type="sale"):

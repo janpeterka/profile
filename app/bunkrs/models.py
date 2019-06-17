@@ -28,24 +28,17 @@ class Bunkr(db.Model):
         return bunkr
 
     @staticmethod
-    def loadAll():
-        bunkrs = db.session.query(Bunkr).all()
-        return bunkrs
-
-    @staticmethod
-    def loadSale():
-        bunkrs = db.session.query(Bunkr).filter(Bunkr.offer_type == 'sale').all()
+    def load_batch(offer_type=None):
+        if offer_type is None:
+            bunkrs = db.session.query(Bunkr).all()
+        else:
+            bunkrs = db.session.query(Bunkr).filter(Bunkr.offer_type == offer_type).all()
         return bunkrs
 
     # @staticmethod
     # def loadActiveSale():
     #     bunkrs = db.session.query(Bunkr).filter(Bunkr.offer_type == 'sale').all()
     #     return bunkrs
-
-    @staticmethod
-    def loadPrepare():
-        bunkrs = db.session.query(Bunkr).filter(Bunkr.offer_type == 'prepare').all()
-        return bunkrs
 
     def save(self):
         db.session.add(self)

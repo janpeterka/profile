@@ -4,8 +4,6 @@ from contextlib import closing
 from bs4 import BeautifulSoup
 import re
 
-SALE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs'
-
 
 def simple_get(url):
     """
@@ -37,17 +35,11 @@ def log_error(e):
     print(e)
 
 
-def save_html(html):
-    file = open("./temp/html.html", "w+")
-    file.write(html)
-    file.close()
-
-
 def get_html(url):
     html = BeautifulSoup(simple_get(url), 'html.parser', from_encoding="utf-8")
     return html
 
 
-def is_detail_link(link):
+def is_link(link):
     pattern = re.compile("(https?://)?[a-z0-9./?=&]+&det=[0-9]+")
     return pattern.match(link)

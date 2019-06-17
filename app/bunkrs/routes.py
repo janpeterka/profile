@@ -18,15 +18,9 @@ bunkrs_blueprint = Blueprint('bunkrs', __name__)
 
 
 @bunkrs_blueprint.route('/bunkrs', methods=['GET'])
-@bunkrs_blueprint.route('/bunkrs/<type>', methods=['GET'])
-def showBunkrs(type=None):
-    if type == "sale":
-        bunkrs = models.Bunkr.loadSale()
-    elif type == "prepare":
-        bunkrs = models.Bunkr.loadPrepare()
-    else:
-        bunkrs = models.Bunkr.loadAll()
-
+@bunkrs_blueprint.route('/bunkrs/<offer_type>', methods=['GET'])
+def showBunkrs(offer_type=None):
+    bunkrs = models.Bunkr.load_batch(offer_type)
     return template('bunkrs/bunkrs.tpl', bunkrs=bunkrs)
 
 

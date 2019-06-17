@@ -4,4 +4,5 @@ scripts/
 **/*.todo
 .env
 .flaskenv
+*.pyc
 
