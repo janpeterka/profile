@@ -1,0 +1,82 @@
+{% extends "base.tpl" %}
+{% block title %}
+    Úroky z prodlení
+{% endblock %}
+
+
+{% block links %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animations/makeItRain/makeItRain.css') }}">
+{% endblock %}
+
+
+{% block script %}
+    {{ super() }}
+    <script>
+    $('document').ready(function(){
+        if ($('#log').children().length > 0){
+            // Make sound effect
+            let sound = "{{ url_for('static', filename='sounds/cha-ching.wav') }}";
+            var audio = new Audio(sound);
+            audio.play();
+            
+            // make visual effect
+            makeItRain();
+        };
+    });
+
+    function makeItRain(){
+        var maxBills = 50;
+            for (var i = 0; i < maxBills; i++){
+
+                var random = $(window).width();
+
+                var randomPosition = Math.floor(random*Math.random());
+
+                var randomTime = Math.random() * 20;
+                var randomSpeed = (Math.random()*20)+10 ;
+
+                var bills = $("<span class='billsBillsBills'>")
+                    .css({
+                        left : randomPosition,
+                        top: '-150px',
+                        "-webkit-animation-delay" : randomTime + "s",
+                        "-webkit-animation-duration" : randomSpeed + "s"
+                    });
+
+                $(bills).prepend("<img src='{{ url_for('static', filename='animations/makeItRain/images/bill.svg') }}' alt='a dollar bill' onmouseover='$(this).fadeOut()'>");
+
+                $('body').append(bills);
+        }
+
+    };
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% include('navbar.tpl') %}
+    <div class="container">
+    	<div class="col-12">
+    		<form action="/uroky" id="kacink_form" method="post" class="form form-group form-control">
+                {% from "_formelement.tpl" import render_field %}
+                {{ form.csrf_token }}
+
+                {{ render_field(form.amount, "form-control") }}
+
+                {{ render_field(form.date_from, "form-control") }}
+                {{ render_field(form.date_to, "form-control") }}
+
+                {{ form.submit(class_='btn btn-primary col-sm-3') }}
+    	    </form>
+
+            <div>
+                <ul id="log">
+                    {% for item in log %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    	</div>
+    </div>
+{% endblock %}
+

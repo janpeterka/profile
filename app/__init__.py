@@ -37,17 +37,13 @@ def create_app():
     from app.main import create_module as main_create_module
     main_create_module(application)
 
-    # Main module
+    # Bunkrs module
     from app.bunkrs import create_module as bunkrs_create_module
     bunkrs_create_module(application)
 
-    # Auth module
-    # from app.auth import create_module as auth_create_module
-    # auth_create_module(application)
-
-    # Calc module
-    # from app.calc import create_module as calc_create_module
-    # calc_create_module(application)
+    # Finance module
+    from app.finance import create_module as finance_create_module
+    finance_create_module(application)
 
     # Errors module
     from app.errors import create_module as errors_create_module

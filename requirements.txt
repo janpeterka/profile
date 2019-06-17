@@ -1,12 +1,13 @@
 Flask
 
 Flask-SQLAlchemy
-
+Flask-WTF
 pathlib
 
 mysqlclient
 
 ffmpeg-python
+
 
 gunicorn
 
