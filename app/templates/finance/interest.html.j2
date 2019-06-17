@@ -6,7 +6,12 @@
 
 {% block links %}
     {{ super() }}
+    {# <link rel="icon" href="{{ url_for('static', filename='pics/icons/bill.svg') }}"> #}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animations/makeItRain/makeItRain.css') }}">
+{% endblock %}
+
+{% block style %}
+    {{ super() }}
 {% endblock %}
 
 
@@ -55,16 +60,22 @@
 
 {% block content %}
     {% include('navbar.tpl') %}
-    <div class="container">
+    <div class="container main">
     	<div class="col-12">
-    		<form action="/uroky" id="kacink_form" method="post" class="form form-group form-control">
+    		<form action="/uroky" method="post" class="form form-group form-control">
                 {% from "_formelement.tpl" import render_field %}
                 {{ form.csrf_token }}
 
                 {{ render_field(form.amount, "form-control") }}
 
-                {{ render_field(form.date_from, "form-control") }}
-                {{ render_field(form.date_to, "form-control") }}
+                <div class="row">
+                    <div class="col">
+                        {{ render_field(form.date_from, "form-control") }}
+                    </div>
+                    <div class="col">
+                        {{ render_field(form.date_to, "form-control") }}
+                    </div>
+                </div>
 
                 {{ form.submit(class_='btn btn-primary col-sm-3') }}
     	    </form>
