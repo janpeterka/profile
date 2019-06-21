@@ -25,6 +25,8 @@ def create_app():
 
     # from app.config_logging import db_handler
     # application.logger.addHandler(db_handler)
+    from app.config_logging import gunicorn_logger
+    application.logger.addHandler(gunicorn_logger)
 
     # APPS
     # mail.init_app(application)
