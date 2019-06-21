@@ -3,18 +3,13 @@
     Bunkrs
 {% endblock %}
 
-{% block style %}
-    <style type="text/css" media="screen">
-    .main{
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
-    }
-    </style>
+{% block links %}
+    {{ super() }}
 {% endblock %}
 
 {% block script %}
-    <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+    {{ super() }}
+    {# <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script> #}
 {% endblock %}
 
 {% block content %}

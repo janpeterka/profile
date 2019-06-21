@@ -3,13 +3,19 @@
 
 from datetime import date, timedelta
 import math
+import os
+
+from werkzeug.utils import secure_filename
 
 from flask import Blueprint
-from flask import request
+from flask import request, redirect, url_for
 
 from flask import render_template as template
+from flask import current_app as application
 
-from app.finance.forms import InterestRateForm
+
+from app.finance.forms import InterestRateForm, DocumentUploadForm
+
 
 finance_blueprint = Blueprint('finance', __name__)
 
@@ -85,3 +91,27 @@ def round_date_to_next_nearest_halfyear(old_date):
         new_date = date(old_date.year, 12, 31)
 
     return new_date
+
+
+@finance_blueprint.route('/uploaddoc', methods=['GET', 'POST'])
+def show_upload():
+    from werkzeug.datastructures import CombinedMultiDict
+    form = DocumentUploadForm(CombinedMultiDict((request.files, request.form)))
+    # form = DocumentUploadForm(CombinedMultiDict((request.files, request.form)))
+    if request.method == 'GET':
+        return template('finance/file_upload.html.j2', form=form)
+    elif request.method == "POST":
+        if not form.validate_on_submit():
+            return template('finance/file_upload.html.j2', form=form)
+
+        file = form.document_file.data
+        if file.filename == '':
+            application.logger.warning('No selected file')
+            return redirect(request.url)
+        if file:
+            filename = secure_filename(file.filename)
+
+            file.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))
+
+            # return redirect(url_for('uploaded_file', filename=file.filename))
+            return redirect(request.url)
