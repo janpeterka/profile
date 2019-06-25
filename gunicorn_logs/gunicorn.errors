@@ -1,8 +1,0 @@
-[2019-06-21 23:09:25 +0200] [13980] [INFO] Handling signal: term
-[2019-06-21 23:09:25 +0200] [13980] [INFO] Shutting down: Master
-[2019-06-21 23:09:25 +0200] [14620] [INFO] Starting gunicorn 19.9.0
-[2019-06-21 23:09:25 +0200] [14620] [INFO] Listening at: unix:profile.sock (14620)
-[2019-06-21 23:09:25 +0200] [14620] [INFO] Using worker: sync
-[2019-06-21 23:09:25 +0200] [14636] [INFO] Booting worker with pid: 14636
-[2019-06-21 23:09:25 +0200] [14637] [INFO] Booting worker with pid: 14637
-[2019-06-21 23:09:25 +0200] [14638] [INFO] Booting worker with pid: 14638
