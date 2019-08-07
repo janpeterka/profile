@@ -1,9 +1,11 @@
 __pycache__/
-v_*/
-scripts/
 gunicorn_logs/
+scripts/
+v_*/
+
 **/*.todo
+*.pyc
+
 .env
 .flaskenv
-*.pyc
 
