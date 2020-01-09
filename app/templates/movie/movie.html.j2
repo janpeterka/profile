@@ -1,0 +1,48 @@
+
+
+{% extends "base.tpl" %}
+{% block title %}
+    Movie
+{% endblock %}
+
+{% block links %}
+	{{ super() }}
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/movie.css') }}">
+{% endblock %}
+
+{% block style %}  
+	{{ super() }}
+{% endblock %}
+
+{% block script %}
+	{{ super() }}
+    {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> #}
+    <script src="{{ url_for('static', filename='js/movie.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% include('navbar.tpl') %}
+    <div class="container">
+		<div id="video" class="video">
+	        {# <video autoplay="autoplay"> #}
+	        <video id="videoPlayer">
+	            <source src="{{ url_for('static', filename='videos/1.webm') }}" type="video/webm">
+	        </video>
+		</div>
+	    <div id="menu" class="menu" data-current-id="1">
+	    	 <div class="initial">
+                <h3>The Game.</h1>
+                <a onclick="start_game()">Let's begin...<a>
+            </div>
+
+            <div id="options" class="options hide">
+                <ul id=optionList>
+                    {# <li><a id="2a">Go left</a></li> #}
+                    {# <li><a id="2b">Go right</a></li> #}
+                </ul>
+            </div>
+		</div>
+    </div>
+
+{% endblock %}
+

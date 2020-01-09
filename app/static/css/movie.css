@@ -1,0 +1,39 @@
+video {
+	width: 100%;
+}
+
+.menu {
+    height: 98%;
+    background-color: rgba(0, 0, 0, .5);
+}
+.menu, .menu-wrapper {
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -51%);*/
+    /*width: 100%;*/
+    /*padding: 0;*/
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu, .menu a {
+    color: #fff;
+}
+.menu a:hover {
+    cursor: pointer;
+}
+.menu ul li {
+    list-style-type: none;
+}
+@media only screen and (min-width: 768px) {
+    .menu ul li {
+        display: inline-block;
+        margin-right: 30px;
+    }
+}
+
+.hide {
+	display: none;
+}

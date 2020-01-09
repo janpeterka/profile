@@ -43,6 +43,10 @@ def create_app():
     from app.bunkrs import create_module as bunkrs_create_module
     bunkrs_create_module(application)
 
+    # Movie module
+    from app.movie import create_module as movie_create_module
+    movie_create_module(application)
+
     # Finance module
     from app.finance import create_module as finance_create_module
     finance_create_module(application)

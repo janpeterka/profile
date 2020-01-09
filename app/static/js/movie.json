@@ -1,0 +1,49 @@
+'{
+	"menus":
+	[{
+		"1": {
+			"code_from": 1,
+				"options": [{
+					"first": {
+						"label": "Go left",
+						"code": "2a"
+					},
+					"second": {
+						"label": "Go right",
+						"code": "2b"
+					}
+				}]
+		},
+		
+		"2": {
+			"code_from": 2,
+				"options": [{
+					"first": {
+						"label": "Turn around",
+						"code": "3a"
+					},
+					"second": {
+						"label": "Go right",
+						"code": "4"
+					}
+				}]
+		},
+
+		"4": {
+			"code_from": 4,
+				"options": [{
+					"first": {
+						"label": "Go",
+						"code": "4a"
+					},
+					"second": {
+						"label": "Run!",
+						"code": "4b"
+					}
+				}]
+		}
+
+
+	}]
+
+}'
