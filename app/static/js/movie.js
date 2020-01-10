@@ -76,18 +76,17 @@ function prepare_game(){
 }
 
 function select_option(code){
-	console.log("selected: " + code);
 	setVideo(code);
 	playVideo();
 }
 
 function get_menu_options() {
+	// get number from code
 	currentVideoId = currentVideoCode.match(/\d+/g)[0];
 	set_menu_options(currentVideoId);
 }
 
 function set_menu_options(id){
-	// console.log(id);
 	situation = json["menus"][id]
 	options = situation["options"];
 
@@ -95,10 +94,8 @@ function set_menu_options(id){
 	$(optionsLabel).empty();
 	optionsLabel.innerHTML = "<h3>"+situation["label"]+"<h3>"
 
-
 	// Prepare option list
 	$(optionList).empty();
-
 	for (var i = options.length - 1; i >= 0; i--) {
 		$("<li><a onclick='select_option(\""+options[i]["code"]+"\")' id='"+options[i]["code"]+"'>"+options[i]["label"]+"</li>").appendTo(optionList);
 	}
@@ -112,7 +109,6 @@ function setVideo(code) {
 }
 
 function playVideo() {
-
     // video.preload = "auto";
     videoPlayer.load();
     videoContainer.classList.remove("blurred");
@@ -126,9 +122,6 @@ function handler_video_end(e) {
     videoContainer.classList.add("blurred");
     // videoContainer.classList.remove("unblurred");
 }
-
-
-
 
 
 window.onload = prepare_game()
