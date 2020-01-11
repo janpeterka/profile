@@ -35,7 +35,7 @@
     <div id="content">
     	{% block content %}{% endblock %}
     </div>
-    <div class="footer">
+    <div id="footer" class="footer">
         {% block footer %}
         &copy; Copyright since 2017 by Jan Peterka</a>.
         {% endblock %}

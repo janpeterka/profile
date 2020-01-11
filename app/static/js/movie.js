@@ -3,6 +3,9 @@ var videoPlayer = document.getElementById("videoPlayer");
 videoPlayer.addEventListener('ended', handler_video_end, false);
 var videoSource = document.getElementById("videoSource");
 
+var navbar = document.getElementById("navbar");
+var footer = document.getElementById("footer");
+
 var menu = document.getElementById("menu");
 var optionsLabel = document.getElementById("optionsLabel");
 var menuOptions = document.getElementById("options");
@@ -14,7 +17,7 @@ var json_source = `{
 	"menus":
 	{
 		"0": {
-			"label": "Game",
+			"label": "This Game",
 			"options": [
 				{
 					"label": "Start",
@@ -72,6 +75,9 @@ var json_source = `{
 json = JSON.parse(json_source);
 
 function prepare_game(){
+	videoContainer.classList.add("pseudofullscreen");
+	navbar.classList.add("hidden");
+	footer.classList.add("hidden");
 	set_menu_options(currentVideoCode);
 }
 
@@ -100,7 +106,7 @@ function set_menu_options(id){
 		$("<li><a onclick='select_option(\""+options[i]["code"]+"\")' id='"+options[i]["code"]+"'>"+options[i]["label"]+"</li>").appendTo(optionList);
 	}
 
-	menu.classList.remove("hide")
+	menu.classList.remove("hidden")
 }
 
 function setVideo(code) {
@@ -113,13 +119,15 @@ function playVideo() {
     videoPlayer.load();
     videoContainer.classList.remove("blurred");
     // videoContainer.classList.add("unblurred");
-    menu.classList.add("hide");
+    menu.classList.add("hidden");
+    videoPlayer.requestFullscreen();
     videoPlayer.play();
 }
 
 function handler_video_end(e) {
 	get_menu_options();
     videoContainer.classList.add("blurred");
+    document.exitFullscreen();
     // videoContainer.classList.remove("unblurred");
 }
 
