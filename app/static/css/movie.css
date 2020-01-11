@@ -6,22 +6,32 @@ video {
 	width: 100%;
 }
 
+video::-webkit-media-controls {
+  display:none !important;
+}
+
 .container {
 	position: relative;
 }
 
 .menu {
     position: absolute;
-    height: 98%;
+    height: 100%;
     top: 0;
     left: 1em;
-    padding-top: 20%;
+    /*padding-top: 20%;*/
+    margin-top: 40%;
     width: 98%;
     /*padding: 0;*/
     background-color: rgba(0, 0, 0, .2);
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.options_label h3 {
+	font-size: 5em;
+	font-weight: bold;
 }
 
 .menu, .menu a {
@@ -32,6 +42,7 @@ video {
 }
 .menu ul li {
     list-style-type: none;
+    font-size: 3em;
 }
 @media only screen and (min-width: 768px) {
     .menu ul li {
@@ -40,7 +51,7 @@ video {
     }
 }
 
-.hide {
+.hidden {
 	display: none;
 }
 
