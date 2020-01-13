@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include('navbar.tpl') %}
+    {% include('navbar.html.j2') %}
     <div class="container" style="margin-top:20px">
         <div class="main">
 

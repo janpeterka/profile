@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include('navbar.tpl') %}
+    {% include('navbar.html.j2') %}
     <div class="container main">
         <form action="/uploaddoc" method="POST" class="form-group form-control" enctype="multipart/form-data">
             {{ form.csrf_token }}

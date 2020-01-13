@@ -3,7 +3,7 @@
 {% block script %}{% endblock %}
 
 {% block content %}
-	{% include('navbar.tpl') %}
+	{% include('navbar.html.j2') %}
     <div class="container">
     </div>
 {% endblock %}

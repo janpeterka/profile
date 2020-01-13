@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include('navbar.tpl') %}
+    {% include('navbar.html.j2') %}
     <div class="container">
         <div class="main">
             {% import "portfolio-item.tpl" as item %}

@@ -20,20 +20,19 @@
 {% endblock %}
 
 {% block content %}
-    {% include('navbar.tpl') %}
+    {% include('navbar.html.j2') %}
     <div class="container">
 		<div id="video" class="video">
 	        <video id="videoPlayer">
 	            <source id="videoSource" src="{{ url_for('static', filename='videos/1.webm') }}" type="video/webm">
 	        </video>
 		</div>
-	    <div id="menu" class="menu hide" data-current-id="1">
+	    <div id="menu" class="menu hide">
             <div id="optionsLabel" class="options_label">
             </div>
 
             <div id="options" class="options">
-                <ul id=optionList>
-                </ul>
+                <ul id=optionList></ul>
             </div>
 		</div>
     </div>

@@ -4,7 +4,6 @@ from app.utilities import scraping
 SALE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=nab&up=&typ=bs'
 PREPARE_DOMAIN = 'http://www.annm.army.cz/index.php?id=21&zobr=prp&up=&typ=bs'
 
-
 def get_links(url, offer_type="sale"):
     html = scraping.get_html(url)
     for link in html.select('a'):

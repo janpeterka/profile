@@ -55,7 +55,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include('navbar.tpl') %}
+    {% include('navbar.html.j2') %}
     <div class="container main">
         <span class="stream col-6">
             <img src="http://jpeterka.cz:5500/video" alt="video_2" style="width: 700px; margin: 50px">
