@@ -1,14 +1,12 @@
 /* TODO
  - jiné rozlišení
+ - subtitles
 */
 var container = document.getElementById("container");
 var videoContainer = document.getElementById("video");
 var videoPlayer = document.getElementById("videoPlayer");
 videoPlayer.addEventListener('ended', handler_video_end, false);
 var videoSource = document.getElementById("videoSource");
-
-var navbar = document.getElementById("navbar");
-var footer = document.getElementById("footer");
 
 var menu = document.getElementById("menu");
 var optionsLabel = document.getElementById("optionsLabel");
