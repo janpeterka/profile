@@ -7,6 +7,7 @@ var videoContainer = document.getElementById("video");
 var videoPlayer = document.getElementById("videoPlayer");
 videoPlayer.addEventListener('ended', handler_video_end, false);
 var videoSource = document.getElementById("videoSource");
+container.addEventListener('click', set_full_screen, false);
 
 var menu = document.getElementById("menu");
 var optionsLabel = document.getElementById("optionsLabel");
@@ -112,13 +113,16 @@ var json_source = `{
 `
 json = JSON.parse(json_source);
 
-function prepare_game(){
+function set_full_screen(){
 	container.requestFullscreen();
+}
+
+function prepare_game(){
 	set_menu_options(lastVideoCode);
 }
 
 function select_option(code){
-	container.requestFullscreen();
+	// container.requestFullscreen();
 	playVideo(code);
 }
 
