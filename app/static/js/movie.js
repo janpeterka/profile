@@ -118,6 +118,7 @@ function prepare_game(){
 }
 
 function select_option(code){
+	container.requestFullscreen();
 	playVideo(code);
 }
 
