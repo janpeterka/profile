@@ -18,6 +18,6 @@ def show_movie():
     return template('movie/movie.html.j2')
 
 
-# @movie_blueprint.route('/movie_json', methods=['GET'])
-# def show_json():
-# 	return send_from_directory('static', filename="js/movie.json")
+@movie_blueprint.route('/movie_json', methods=['GET'])
+def show_json():
+	return send_from_directory('static', filename="js/movie.json")

@@ -1,3 +1,9 @@
+/* TODO
+ - jiné rozlišení
+
+
+*/
+var container = document.getElementById("container");
 var videoContainer = document.getElementById("video");
 var videoPlayer = document.getElementById("videoPlayer");
 videoPlayer.addEventListener('ended', handler_video_end, false);
@@ -11,7 +17,7 @@ var optionsLabel = document.getElementById("optionsLabel");
 var menuOptions = document.getElementById("options");
 var optionList = document.getElementById("optionList");
 
-var currentVideoCode = "0";
+var lastVideoCode = "1";
 
 var json_source = `{
 	"menus":
@@ -40,33 +46,69 @@ var json_source = `{
 				}
 			]
 		},
+
+		"2": {},
 		
-		"2": {
+		"3": {
 			"label": "What do you do?",
 			"options": [
 				{
 					"label": "Turn around and go right",
-					"code": "3a"
+					"code": "4a"
 				},
 				{
 					"label": "Go right",
-					"code": "3b"
+					"code": "4b"
 				}
 			]
 		},
 
-		"3": {
-				"options": {
-					"first": {
-						"label": "Go",
-						"code": "4a"
-					},
-					"second": {
-						"label": "Run!",
-						"code": "4b"
-					}
+		"4": {
+			"label": "What do you do?",
+			"options": [
+				{
+					"label": "Go",
+					"code": "5b"
+				},
+				{
+					"label": "Run!",
+					"code": "5a"
 				}
+			]
+		},
+
+		"5": {},
+
+		"6": {
+			"label": "What do you do?",
+			"options": [
+				{
+					"label": "Continue",
+					"code": "7a"
+				},
+				{
+					"label": "Hide in the building",
+					"code": "7b"
+				}
+			]
+		},
+
+		"7": {},
+
+		"8": {
+			"label": "What do you do?",
+			"options": [
+				{
+					"label": "Give up",
+					"code": "9a"
+				},
+				{
+					"label": "Run to the tunnel!",
+					"code": "9b"
+				}
+			]
 		}
+
 
 	}
 
@@ -75,21 +117,32 @@ var json_source = `{
 json = JSON.parse(json_source);
 
 function prepare_game(){
-	videoContainer.classList.add("pseudofullscreen");
+	// videoContainer.classList.add("pseudofullscreen");
 	navbar.classList.add("hidden");
 	footer.classList.add("hidden");
-	set_menu_options(currentVideoCode);
+	container.requestFullscreen();
+	set_menu_options(lastVideoCode);
 }
 
 function select_option(code){
-	setVideo(code);
-	playVideo();
+	playVideo(code);
+}
+
+function set_current_video_id(){
+	// get number from code (or number)
+	if (typeof(lastVideoCode) == "number"){
+		currentVideoId = lastVideoCode;
+	} else {
+		currentVideoId = lastVideoCode.match(/\d+/g)[0];
+	}
 }
 
 function get_menu_options() {
-	// get number from code
-	currentVideoId = currentVideoCode.match(/\d+/g)[0];
-	set_menu_options(currentVideoId);
+	if (json["menus"][currentVideoId].hasOwnProperty("options")){
+		set_menu_options(currentVideoId);
+	} else {
+		playVideo(parseInt(currentVideoId) + 1);
+	}
 }
 
 function set_menu_options(id){
@@ -111,24 +164,24 @@ function set_menu_options(id){
 
 function setVideo(code) {
 	videoSource.setAttribute('src', "static/videos/"+code+".webm");
-    currentVideoCode = code
+    lastVideoCode = code
 }
 
-function playVideo() {
-    // video.preload = "auto";
+function playVideo(code) {
+	setVideo(code);
+    video.preload = "auto";
     videoPlayer.load();
+
     videoContainer.classList.remove("blurred");
-    // videoContainer.classList.add("unblurred");
     menu.classList.add("hidden");
-    videoPlayer.requestFullscreen();
+
     videoPlayer.play();
 }
 
 function handler_video_end(e) {
-	get_menu_options();
+	set_current_video_id();
     videoContainer.classList.add("blurred");
-    document.exitFullscreen();
-    // videoContainer.classList.remove("unblurred");
+	get_menu_options();
 }
 
 

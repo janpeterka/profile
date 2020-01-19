@@ -1,0 +1,61 @@
+`{
+	"menus":
+	{
+		"0": {
+			"label": "This Game",
+			"options": [
+				{
+					"label": "Start",
+					"code": "1"
+				}
+			]
+
+		},
+
+		"1": {
+			"label": "Where do you want to go?",
+			"options": [
+				{
+					"label": "Go right",
+					"code": "2a"
+				},
+				{
+					"label": "Go left",
+					"code": "2b"
+				}
+			]
+		},
+		
+		"2": {
+			"label": "What do you do?",
+			"options": [
+				{
+					"label": "Turn around and go right",
+					"code": "3a"
+				},
+				{
+					"label": "Go right",
+					"code": "3b"
+				}
+			]
+		},
+
+		"3": {
+				"options": {
+					"first": {
+						"label": "Go",
+						"code": "4a"
+					},
+					"second": {
+						"label": "Run!",
+						"code": "4b"
+					}
+				}
+		},
+
+		""
+
+	}
+
+}
+`
