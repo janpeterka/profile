@@ -117,8 +117,6 @@ var json_source = `{
 json = JSON.parse(json_source);
 
 function prepare_game(){
-	// navbar.classList.add("hidden");
-	// footer.classList.add("hidden");
 	container.requestFullscreen();
 	set_menu_options(lastVideoCode);
 }
