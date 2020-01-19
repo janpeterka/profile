@@ -1,6 +1,5 @@
 /* TODO
  - jiné rozlišení
- - random bug - na 4 se to lagne, pokud nejdu od začátku
 */
 var container = document.getElementById("container");
 var videoContainer = document.getElementById("video");
