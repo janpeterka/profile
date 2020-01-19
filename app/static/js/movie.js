@@ -1,7 +1,6 @@
 /* TODO
  - jiné rozlišení
-
-
+ - random bug - na 4 se to lagne, pokud nejdu od začátku
 */
 var container = document.getElementById("container");
 var videoContainer = document.getElementById("video");
@@ -17,7 +16,7 @@ var optionsLabel = document.getElementById("optionsLabel");
 var menuOptions = document.getElementById("options");
 var optionList = document.getElementById("optionList");
 
-var lastVideoCode = "1";
+var lastVideoCode = "0";
 
 var json_source = `{
 	"menus":
@@ -64,7 +63,7 @@ var json_source = `{
 		},
 
 		"4": {
-			"label": "What do you do?",
+			"label": "How do you continue?",
 			"options": [
 				{
 					"label": "Go",
@@ -80,10 +79,10 @@ var json_source = `{
 		"5": {},
 
 		"6": {
-			"label": "What do you do?",
+			"label": "You see a door to the building.",
 			"options": [
 				{
-					"label": "Continue",
+					"label": "Run",
 					"code": "7a"
 				},
 				{
@@ -96,7 +95,7 @@ var json_source = `{
 		"7": {},
 
 		"8": {
-			"label": "What do you do?",
+			"label": "You are tired.",
 			"options": [
 				{
 					"label": "Give up",
