@@ -73,12 +73,6 @@ video::-webkit-media-controls {
 	-o-transition: 0.2s -o-filter linear;
 }*/
 
-.pseudofullscreen {
-	position: fixed; right: 0; top: 0;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto; z-index: -100;
-}
-
 .nocursor {
     cursor: none;
 }
