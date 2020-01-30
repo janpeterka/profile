@@ -119,10 +119,10 @@ function set_full_screen(){
 
 function prepare_game(){
 	set_menu_options(lastVideoCode);
+	// container.requestFullscreen();
 }
 
 function select_option(code){
-	// container.requestFullscreen();
 	playVideo(code);
 }
 
