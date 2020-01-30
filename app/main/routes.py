@@ -37,6 +37,11 @@ def main():
     return template('dashboard.tpl')
 
 
+@main_blueprint.route('/newsletter', methods=['GET'])
+def show_newsletter():
+    return template('newsletter_subscribe.html.j2')
+
+
 @main_blueprint.route('/portfolio', methods=['GET'])
 def show_portfolio():
     return template('portfolio.tpl')
