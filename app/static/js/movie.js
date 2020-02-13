@@ -1,6 +1,5 @@
 /* TODO
  - jiné rozlišení
- - subtitles
 */
 var container = document.getElementById("container");
 var videoContainer = document.getElementById("video");
@@ -14,7 +13,7 @@ var optionsLabel = document.getElementById("optionsLabel");
 var menuOptions = document.getElementById("options");
 var optionList = document.getElementById("optionList");
 
-var lastVideoCode = "0";
+var lastVideoCode = "8";
 
 var json_source = `{
 	"menus":
@@ -103,7 +102,25 @@ var json_source = `{
 					"label": "Run to the tunnel!",
 					"code": "9b"
 				}
-			]
+			],
+			"next": {
+				"9a":
+					{
+						"next": "game_over"
+					},
+				"9b":
+					{
+						"next": "end_of_level"
+					}
+			}
+		},
+
+		"game_over": {
+			"label": "Game over"
+		} ,
+
+		"end_of_level": {
+			"label": "End of level"
 		}
 
 
@@ -111,6 +128,8 @@ var json_source = `{
 
 }
 `
+
+
 json = JSON.parse(json_source);
 
 function set_full_screen(){
@@ -160,6 +179,19 @@ function set_menu_options(id){
 	menu.classList.remove("hidden")
 }
 
+function set_screen(situation){
+	$(optionsLabel).empty();
+	optionsLabel.innerHTML = "<h3>"+situation["label"]+"<h3>"
+	$(optionList).empty();
+	menu.classList.remove("hidden")
+}
+
+function show_endscreen(){
+	next_code = json["menus"][currentVideoId - 1]["next"][lastVideoCode]["next"]
+	next = json["menus"][next_code]
+	set_screen(next)
+}
+
 function setVideo(code) {
 	videoSource.setAttribute('src', "static/videos/"+code+".webm");
     lastVideoCode = code
@@ -179,7 +211,11 @@ function playVideo(code) {
 function handler_video_end(e) {
 	set_current_video_id();
     videoContainer.classList.add("blurred");
-	get_menu_options();
+    if (currentVideoId != 9){
+		get_menu_options();
+    } else {
+    	show_endscreen();
+    }
 }
 
 
