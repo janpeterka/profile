@@ -13,7 +13,7 @@ var optionsLabel = document.getElementById("optionsLabel");
 var menuOptions = document.getElementById("options");
 var optionList = document.getElementById("optionList");
 
-var lastVideoCode = "8";
+var lastVideoCode = "0";
 
 var json_source = `{
 	"menus":
