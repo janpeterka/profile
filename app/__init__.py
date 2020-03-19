@@ -14,7 +14,8 @@ def create_app():
 
     # CONFIG
     application.config.from_object('config')
-    # application.secret_key = application.config['SECRET_KEY']
+    application.secret_key = application.config['SECRET_KEY']
+    application.config['APP_STATE'] = "development"
 
     # LOGGING
     # from app.config_logging import file_handler
@@ -50,6 +51,10 @@ def create_app():
     # Finance module
     from app.finance import create_module as finance_create_module
     finance_create_module(application)
+
+    # Integrations module
+    from app.integrations import create_module as integrations_create_module
+    integrations_create_module(application)
 
     # Errors module
     from app.errors import create_module as errors_create_module
