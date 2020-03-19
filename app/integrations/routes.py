@@ -34,8 +34,9 @@ def toggl_current(secret_key):
     return response
 
 
+@integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/<entry_name>")
-def toggl_start(secret_key, project_name, entry_name):
+def toggl_start(secret_key, project_name, entry_name=None):
     connector = TogglConnector(secret_key)
     return connector.start_time_entry(project_name=project_name, entry_name=entry_name)
 
