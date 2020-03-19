@@ -52,7 +52,7 @@ class TogglConnector(Connector):
     def start_time_entry(self, project_name="other", entry_name=""):
         api_url = "/api/v8/time_entries/start"
 
-        if self.projects[project_name] is not None:
+        if project_name in self.projects and self.projects[project_name] is not None:
             project_id = int(self.projects[project_name])
         else:
             project_id = None
