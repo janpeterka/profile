@@ -19,6 +19,10 @@ class TogglConnector(Connector):
         self.projects = {
             "meditation": os.environ.get("TOGGL_PID_MEDITATION"),
             "body": os.environ.get("TOGGL_PID_BODY"),
+            "gaming": os.environ.get("TOGGL_PID_GAMING"),
+            "distraction": os.environ.get("TOGGL_PID_DISTRACTION"),
+            "leisure": os.environ.get("TOGGL_PID_LEISURE"),
+            "maintenance": os.environ.get("TOGGL_PID_MAINTENACE"),
             "other": None,
         }
 
