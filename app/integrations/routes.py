@@ -35,6 +35,7 @@ def toggl_current(secret_key):
 
 
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>")
+@integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/<entry_name>")
 def toggl_start(secret_key, project_name, entry_name=None):
     connector = TogglConnector(secret_key)

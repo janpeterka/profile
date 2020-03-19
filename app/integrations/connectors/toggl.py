@@ -22,7 +22,7 @@ class TogglConnector(Connector):
             "gaming": os.environ.get("TOGGL_PID_GAMING"),
             "distraction": os.environ.get("TOGGL_PID_DISTRACTION"),
             "leisure": os.environ.get("TOGGL_PID_LEISURE"),
-            "maintenance": os.environ.get("TOGGL_PID_MAINTENACE"),
+            "maintenance": os.environ.get("TOGGL_PID_MAINTENANCE"),
             "other": None,
         }
 
@@ -52,7 +52,10 @@ class TogglConnector(Connector):
     def start_time_entry(self, project_name="other", entry_name=""):
         api_url = "/api/v8/time_entries/start"
 
-        project_id = int(self.projects[project_name])
+        if self.projects[project_name] is not None:
+            project_id = int(self.projects[project_name])
+        else:
+            project_id = None
 
         data = {}
         data["time_entry"] = {}
