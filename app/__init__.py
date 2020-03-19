@@ -14,8 +14,7 @@ def create_app():
 
     # CONFIG
     application.config.from_object('config')
-    application.secret_key = application.config['SECRET_KEY']
-    application.config['APP_STATE'] = "development"
+    # application.secret_key = application.config['SECRET_KEY']
 
     # LOGGING
     # from app.config_logging import file_handler
