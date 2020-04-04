@@ -17,13 +17,6 @@ integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integr
 
 
 # TOGGL
-# @integrations_blueprint.route("/<secret_key>/toggl/current")
-# def toggl_current(secret_key):
-#     connector = TogglConnector(secret_key)
-#     response = connector.get_current_time_entry()
-#     return response
-
-
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/<entry_name>")

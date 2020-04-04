@@ -8,20 +8,17 @@ from app.integrations.connectors.connector import Connector
 
 class TogglConnector(Connector):
     def __init__(self, secret_key):
-
         super(TogglConnector, self).__init__(secret_key)
-
         self.service_url = "www.toggl.com"
         self.api_token = os.environ.get("TOGGL_API_TOKEN")
-
         self.url = "https://" + self.api_token + ":api_token" + "@" + self.service_url
 
         self.known_tasks = {
             "workout": "body",
             "yoga": "body",
             "running": "body",
-
-            "cleaning": "maintenance"
+            "meditation": "meditation",
+            "cleaning": "maintenance",
         }
 
         self.projects = {
@@ -37,9 +34,6 @@ class TogglConnector(Connector):
         return self.url + self.api_url
 
     # general methods
-    def create_time_entry(self, project_name, entry_name):
-        pass
-
     def get_current_time_entry_id(self):
         current_time_entry = self.get_current_time_entry()
         if current_time_entry and "id" in current_time_entry:
@@ -61,16 +55,21 @@ class TogglConnector(Connector):
 
     def start_time_entry(self, project_name, entry_name=None):
         self.api_url = "/api/v8/time_entries/start"
+        project_name = project_name.strip()
+        if entry_name:
+            entry_name = entry_name.strip()
 
-        if project_name and project_name in self.projects:
-            project_id = int(self.projects[project_name])
-        elif project_name and project_name in self.known_tasks:
+        if project_name and project_name in self.known_tasks:
             entry_name = project_name
             project_id = int(self.projects[self.known_tasks[project_name]])
-        else:
+        elif project_name and project_name in self.projects:
+            project_id = int(self.projects[project_name])
+        elif project_name:
             project_id = None
             if entry_name is None:
                 entry_name = project_name
+        else:
+            project_id = None
 
         if entry_name is None:
             entry_name = ""
@@ -93,10 +92,14 @@ class TogglConnector(Connector):
         if time_entry_id is None:
             return "No entry running"
 
-        api_url = "/api/v8/time_entries/{}/stop".format(time_entry_id)
+        self.api_url = "/api/v8/time_entries/{}/stop".format(time_entry_id)
 
-        response = requests.put(self.url + api_url)
-        return "Entry stopped"
+        response = requests.put(self.full_url())
+
+        if response.status_code == requests.codes.ok:
+            return "Entry stopped"
+        else:
+            return "Something went wrong with request"
 
     # output integrations
     def get_data_for_google_fit():
