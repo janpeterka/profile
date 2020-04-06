@@ -17,17 +17,23 @@ class TogglConnector(Connector):
             "workout": "body",
             "yoga": "body",
             "running": "body",
+            "guitar": "hobby",
+            "piano": "hobby",
             "meditation": "meditation",
             "cleaning": "maintenance",
+            "nap": "sleep",
         }
 
         self.projects = {
-            "meditation": os.environ.get("TOGGL_PID_MEDITATION"),
             "body": os.environ.get("TOGGL_PID_BODY"),
-            "gaming": os.environ.get("TOGGL_PID_GAMING"),
             "distraction": os.environ.get("TOGGL_PID_DISTRACTION"),
+            "gaming": os.environ.get("TOGGL_PID_GAMING"),
+            "hobby": os.environ.get("TOGGL_PID_HOBBY"),
             "leisure": os.environ.get("TOGGL_PID_LEISURE"),
             "maintenance": os.environ.get("TOGGL_PID_MAINTENANCE"),
+            "meditation": os.environ.get("TOGGL_PID_MEDITATION"),
+            "movie": os.environ.get("TOGGL_PID_MOVIES"),
+            "sleep": os.environ.get("TOGGL_PID_SLEEP"),
         }
 
     def full_url(self):
