@@ -129,14 +129,23 @@ class TogglConnector(Connector):
         start_datetime = urllib.parse.quote(start_datetime)
         end_datetime = urllib.parse.quote(end_datetime)
 
-        self.api_url = "/api/v8/time_entries?start_date={}&end_date={}".format(start_datetime, end_datetime)
+        self.api_url = "/api/v8/time_entries?start_date={}&end_date={}".format(
+            start_datetime, end_datetime
+        )
 
         response = requests.get(self.full_url)
 
         entries = json.loads(response.text)
+
+        entry_descriptions = []
         for entry in entries:
-            print(entry['description'])
-        return response.text
+            entry_descriptions.append(entry["description"])
+            # print(entry["description"])
+
+        if response.status_code == requests.codes.ok:
+            return entry_descriptions
+        else:
+            return False
 
     # output integrations
     def get_data_for_google_fit():
