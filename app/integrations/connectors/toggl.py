@@ -1,6 +1,9 @@
 import requests
 import os
 import json
+import datetime
+import urllib.parse
+
 from flask import jsonify
 
 from app.integrations.connectors.connector import Connector
@@ -36,6 +39,7 @@ class TogglConnector(Connector):
             "sleep": os.environ.get("TOGGL_PID_SLEEP"),
         }
 
+    @property
     def full_url(self):
         return self.url + self.api_url
 
@@ -49,7 +53,7 @@ class TogglConnector(Connector):
 
     def get_current_time_entry(self):
         self.api_url = "/api/v8/time_entries/current"
-        response = requests.get(self.full_url())
+        response = requests.get(self.full_url)
         response = json.loads(response.text)
 
         if "data" in response:
@@ -88,7 +92,7 @@ class TogglConnector(Connector):
         if project_id is not None:
             data["time_entry"]["pid"] = project_id
 
-        response = requests.post(self.full_url(), json=data)
+        response = requests.post(self.full_url, json=data)
         return response.text
 
     def stop_time_entry(self, time_entry_id=None):
@@ -100,12 +104,39 @@ class TogglConnector(Connector):
 
         self.api_url = "/api/v8/time_entries/{}/stop".format(time_entry_id)
 
-        response = requests.put(self.full_url())
+        response = requests.put(self.full_url)
 
         if response.status_code == requests.codes.ok:
             return "Entry stopped"
         else:
             return "Something went wrong with request"
+
+    def get_todays_time_entries(self):
+        start_datetime = (
+            datetime.datetime.utcnow()
+            .replace(tzinfo=datetime.timezone.utc)
+            .replace(microsecond=0, second=0, minute=0, hour=0)
+            .isoformat()
+        )
+
+        end_datetime = (
+            datetime.datetime.utcnow()
+            .replace(tzinfo=datetime.timezone.utc)
+            .replace(microsecond=0, second=59, minute=59, hour=23)
+            .isoformat()
+        )
+
+        start_datetime = urllib.parse.quote(start_datetime)
+        end_datetime = urllib.parse.quote(end_datetime)
+
+        self.api_url = "/api/v8/time_entries?start_date={}&end_date={}".format(start_datetime, end_datetime)
+
+        response = requests.get(self.full_url)
+
+        entries = json.loads(response.text)
+        for entry in entries:
+            print(entry['description'])
+        return response.text
 
     # output integrations
     def get_data_for_google_fit():

@@ -29,3 +29,9 @@ def toggl_start(secret_key, project_name, entry_name=None):
 def toggl_stop(secret_key):
     connector = TogglConnector(secret_key)
     return connector.stop_time_entry()
+
+
+@integrations_blueprint.route("/<secret_key>/toggl/today")
+def toggl_get_todays_entries(secret_key):
+    connector = TogglConnector(secret_key)
+    return connector.get_todays_time_entries()
