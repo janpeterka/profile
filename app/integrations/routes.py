@@ -10,6 +10,7 @@ from flask import Blueprint
 # from flask import current_app as application
 
 from app.integrations.connectors.toggl import TogglConnector
+from app.integrations.connectors.exist import ExistConnector
 
 # from google_fit import GoogleFitConnector
 
@@ -35,3 +36,9 @@ def toggl_stop(secret_key):
 def toggl_get_todays_entries(secret_key):
     connector = TogglConnector(secret_key)
     return connector.get_todays_time_entries()
+
+
+@integrations_blueprint.route("/<secret_key>/exist/daily")
+def test(secret_key):
+    connector = ExistConnector(secret_key)
+    return connector.add_daily_data()
