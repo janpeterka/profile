@@ -1,5 +1,6 @@
-import requests
 import datetime
+import os
+import requests
 
 from app.integrations.connectors.connector import Connector
 
@@ -10,6 +11,7 @@ class ExistConnector(Connector):
     def __init__(self, secret_key):
         super(ExistConnector, self).__init__(secret_key)
         self.secret_key = secret_key
+        self.api_token = os.environ.get("EXIST_API_TOKEN")
 
     def do_request(self, request_type="get", headers=None, json=None):
         if not headers:
