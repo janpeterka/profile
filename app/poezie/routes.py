@@ -31,9 +31,9 @@ def show(id):
 def post():
     poezie = Poezie(
         name=request.form.get("name"),
-        created_by=request.form.get("author"),
-        latitude=request.form.get("coords_x"),
-        longitude=request.form.get("coords_y"),
+        created_by=request.form.get("created_by"),
+        latitude=request.form.get("latitude"),
+        longitude=request.form.get("longitude"),
     )
     print(poezie)
     print(poezie.name)
