@@ -47,6 +47,10 @@ def create_app():
     from app.movie import create_module as movie_create_module
     movie_create_module(application)
 
+    # Poezie module
+    from app.poezie import create_module as poezie_create_module
+    poezie_create_module(application)
+
     # Finance module
     from app.finance import create_module as finance_create_module
     finance_create_module(application)
@@ -58,9 +62,5 @@ def create_app():
     # Errors module
     from app.errors import create_module as errors_create_module
     errors_create_module(application)
-
-    # Support module
-    # from app.support import create_module as support_create_module
-    # support_create_module(application)
 
     return application

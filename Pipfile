@@ -7,7 +7,6 @@ verify_ssl = true
 
 [packages]
 pathlib = "*"
-mysqlclient = "*"
 ffmpeg-python = "*"
 gunicorn = "*"
 requests = "*"
@@ -16,6 +15,7 @@ python-dotenv = "*"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-WTF = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
