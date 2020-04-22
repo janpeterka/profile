@@ -20,9 +20,6 @@ from flask import send_file
 from app import models
 
 from pathlib import Path
-# import subprocess
-import ffmpeg
-
 
 BLUEPRINT_ROOT = os.path.dirname(os.path.realpath(__file__))
 SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, '../public/songbooks/')
@@ -70,8 +67,3 @@ def show_songbooks():
 def download_songbook_file(filename):
     return send_file(SONGBOOKS_DIR + filename.split('.')[0] + "/" + filename,
                      attachment_filename=filename)
-
-
-@main_blueprint.route('/pexeso', methods=['GET'])
-def show_pexeso():
-    return template('pexeso.tpl')
