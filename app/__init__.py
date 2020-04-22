@@ -39,21 +39,9 @@ def create_app():
     from app.main import create_module as main_create_module
     main_create_module(application)
 
-    # Bunkrs module
-    from app.bunkrs import create_module as bunkrs_create_module
-    bunkrs_create_module(application)
-
-    # Movie module
-    from app.movie import create_module as movie_create_module
-    movie_create_module(application)
-
     # Poezie module
     from app.poezie import create_module as poezie_create_module
     poezie_create_module(application)
-
-    # Finance module
-    from app.finance import create_module as finance_create_module
-    finance_create_module(application)
 
     # Integrations module
     from app.integrations import create_module as integrations_create_module
