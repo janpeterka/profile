@@ -1,11 +1,6 @@
 {% extends "base.tpl" %}
 {% block title %}Básně hor{% endblock %}
 
-{% block script %}
-    {# {% include 'javascript/stimulus.js.html' %} #}
-    {# {% include 'javascript/smaps.js.html' %} #}
-{% endblock %}
-
 {% block links %}
 	{{ super() }}
 	<script src="https://api.mapy.cz/loader.js"></script>
@@ -17,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form class="form-group" action="poezie/post">
+				<form class="form-group" action="/poezie/post" method="post">
 					Báseň: <input class="form-control" type="text" name="name">
 					Umístil: <input class="form-control" type="text" name="autor">
 					X: <input class="form-control" id="coords_x" name="coords_x" >

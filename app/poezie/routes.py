@@ -16,6 +16,7 @@ poezie_blueprint = Blueprint("poezie", __name__)
 
 
 @poezie_blueprint.route("/poezie", methods=["GET"])
+@poezie_blueprint.route("/poezie/", methods=["GET"])
 def index():
     return template("poezie/index.html.j2")
 
@@ -26,7 +27,7 @@ def show(id):
     return template("poezie/show.html.j2", poezie=item)
 
 
-@poezie_blueprint.route("/poezie/post", methods=["GET"])
+@poezie_blueprint.route("/poezie/post", methods=["POST"])
 def post():
     poezie = Poezie(
         name=request.form.get("name"),
@@ -34,7 +35,9 @@ def post():
         latitude=request.form.get("coords_x"),
         longitude=request.form.get("coords_y"),
     )
+    print(poezie)
+    print(poezie.name)
 
     poezie.save()
     print(poezie.id)
-    return template("poezie/index.html.j2")
+    return redirect("poezie/show/" + poezie.id)
