@@ -1,0 +1,58 @@
+{% extends "base.tpl" %}
+{% block title %}Básně hor{% endblock %}
+
+{% block script %}
+    {# {% include 'javascript/stimulus.js.html' %} #}
+    {# {% include 'javascript/smaps.js.html' %} #}
+{% endblock %}
+
+{% block links %}
+	{{ super() }}
+	<script src="https://api.mapy.cz/loader.js"></script>
+	<script>Loader.load()</script>
+{% endblock %}
+
+{% block content %}
+	{% include('navbar.html.j2') %}
+	<div class="container">
+		Name: {{poezie.name}}
+		Author: {{poezie.author}}
+		X: {{poezie.x}}
+		Y: {{poezie.y}}
+		<input type="hidden" id="name" value="{{ poezie.name }}">
+		<input type="hidden" id="coords_x" value="{{ poezie.x }}">
+		<input type="hidden" id="coords_y" value="{{ poezie.y }}">
+	</div>
+	<script type="text/javascript">
+      	/* Create map */
+		var center = SMap.Coords.fromWGS84(14.41, 50.08);
+		map = new SMap(JAK.gel("map"), center, 10);
+		map.addDefaultLayer(SMap.DEF_BASE).enable();
+		map.addDefaultControls();
+		map.addControl(new SMap.Control.Sync()); /* Aby mapa reagovala na změnu velikosti průhledu */
+		layer = add_marker_layer(map);
+
+		coords_x = $("#coords_x")[0].val()
+		coords_y = $("#coords_y")[0].val()
+		name = $("#name")[0].val()
+
+		marker_coords = SMap.Coords.fromWGS84(coords_x, coords_y)
+
+		add_marker(layer, marker_coords, name)
+
+    function add_marker_layer(map){
+		var layer = new SMap.Layer.Marker();
+		map.addLayer(layer);
+		layer.enable();
+		return layer;
+    }
+
+    function add_marker(layer, coords, name){
+      	var options = {};
+		var marker = new SMap.Marker(coords, name, options);
+		layer.addMarker(marker);
+		return marker
+    }
+	</script>
+{% endblock %}
+
