@@ -76,8 +76,8 @@
 
         <div style="margin-left: 10px; margin-top: 10px">
             a další zpěvníky, které mám rád: <br>
-            <a href="https://nerez.szm.com/nerez.pdf">Nerez</a> <br>
-            <a href="https://navarova.szm.com/navarova.pdf">Navarová</a> <br>
+            <a href="http://nerez.szm.com/nerez.pdf">Nerez</a> <br>
+            <a href="http://navarova.szm.com/navarova.pdf">Navarová</a> <br>
         </div>
             
         </div>
