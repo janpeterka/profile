@@ -42,19 +42,20 @@
                     "Databáze": [
                         "MySQL"
                         ],
-                    "Backend": ["
-                        Python 3",
+                    "Backend": [
+                        "Python 3",
                         "Flask",
                         "SQLAlchemy"
                         ],
                     "Frontend": [
                         "jQuery",
-                        "Bootstrap"
+                        "Bootstrap",
+                        "stimulus"
                         ],
                     "Administrace": [
                         "Heroku",
                         "gunicorn",
-                        "nginx", 
+                        "nginx, Apache", 
                         "FreeBSD->Debian",
                         "git (via github)"
                         ]
@@ -75,7 +76,7 @@
                     "základy AJAX",
                     "posílání emailů z webové aplikace",
                     "deploy over Heroku",
-                    "deploy na Flask-Gunicorn webserveru na domácím FreeBSD/Debian serveru (včetně nastavení nginx)"
+                    "deploy na Flask-Gunicorn webserveru na domácím FreeBSD/Debian serveru"
                     ])
                 }}
 

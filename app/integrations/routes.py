@@ -1,18 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 from flask import Blueprint
-
-# from flask import request, redirect, url_for
-
-# from flask import render_template as template
-# from flask import current_app as application
 
 from app.integrations.connectors.toggl import TogglConnector
 from app.integrations.connectors.exist import ExistConnector
-
-# from google_fit import GoogleFitConnector
 
 integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integrations")
 
@@ -39,6 +31,6 @@ def toggl_get_todays_entries(secret_key):
 
 
 @integrations_blueprint.route("/<secret_key>/exist/daily")
-def test(secret_key):
+def exist_daily(secret_key):
     connector = ExistConnector(secret_key)
     return connector.add_daily_data()
