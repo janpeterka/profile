@@ -78,6 +78,8 @@
             a další zpěvníky, které mám rád: <br>
             <a href="http://nerez.szm.com/nerez.pdf">Nerez</a> <br>
             <a href="http://navarova.szm.com/navarova.pdf">Navarová</a> <br>
+            <a href="https://www.traband.net/pisnik.pdf">Traband (oficiální)</a> <br>
+            <a href="https://www.pixy.cz/downloads/zpevniky/ZPEVNIK_spiritual.pdf">Spirituál kvintet</a> <br>
         </div>
             
         </div>
