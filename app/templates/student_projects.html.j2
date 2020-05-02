@@ -1,5 +1,21 @@
 {% extends "base.tpl" %}
 {% block title %}Jan Peterka{% endblock %}
+{% block script %}
+<script type="text/javascript">
+    var elem1 = document.getElementById("ovozel1");
+    var elem2 = document.getElementById("ovozel2");
+    var elem3 = document.getElementById("obleceni");
+    var elem4 = document.getElementById("gmo");
+    var elem5 = document.getElementById("odpad");
+
+    if (elem1.requestFullscreen) {elem1.requestFullscreen();} else if (elem1.mozRequestFullScreen) {elem1.mozRequestFullScreen();} else if (elem1.webkitRequestFullscreen) {elem1.webkitRequestFullscreen();} else if (elem1.msRequestFullscreen) { elem1.msRequestFullscreen();}
+    if (elem2.requestFullscreen) {elem2.requestFullscreen();} else if (elem2.mozRequestFullScreen) {elem2.mozRequestFullScreen();} else if (elem2.webkitRequestFullscreen) {elem2.webkitRequestFullscreen();} else if (elem2.msRequestFullscreen) { elem2.msRequestFullscreen();}
+    if (elem3.requestFullscreen) {elem3.requestFullscreen();} else if (elem3.mozRequestFullScreen) {elem3.mozRequestFullScreen();} else if (elem3.webkitRequestFullscreen) {elem3.webkitRequestFullscreen();} else if (elem3.msRequestFullscreen) { elem3.msRequestFullscreen();}
+    if (elem4.requestFullscreen) {elem4.requestFullscreen();} else if (elem4.mozRequestFullScreen) {elem4.mozRequestFullScreen();} else if (elem4.webkitRequestFullscreen) {elem4.webkitRequestFullscreen();} else if (elem4.msRequestFullscreen) { elem4.msRequestFullscreen();}
+    if (elem5.requestFullscreen) {elem5.requestFullscreen();} else if (elem5.mozRequestFullScreen) {elem5.mozRequestFullScreen();} else if (elem5.webkitRequestFullscreen) {elem5.webkitRequestFullscreen();} else if (elem5.msRequestFullscreen) { elem5.msRequestFullscreen();}
+
+</script>
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -11,11 +27,11 @@
     			<h3>Ondřej Kolár, Teodor Chvalina</h3>
     			<div class="row">
     				<div class="col">
-	    			<video controls class="w-70"
+	    			<video id="ovozel1" controls class="w-70"
 	    				   src="{{ url_for('static', filename='videos/student_projects/1B/ovozel1.mp4') }}">Video 1</video>
     				</div>
     				<div class="col">
-	    			<video controls class="w-70"
+	    			<video id="ovozel2" controls class="w-70"
 	    				   src="{{ url_for('static', filename='videos/student_projects/1B/ovozel2.mp4') }}">Video 2</video>
 	    			</div>
     			</div>
@@ -28,7 +44,7 @@
     		<div>
     			<h2 class="m-top-1r">Výroba oblečení</h2>
     			<h3>Angelika Dominiková, Rozárie Borecká, Lea Bořutová</h3>
-    			<video controls class="w-70"
+    			<video id="obleceni" controls class="w-70"
     				   src="{{ url_for('static', filename='videos/student_projects/1B/obleceni.mov') }}">Video</video>
     		</div>
     	</div>
@@ -38,13 +54,13 @@
     		<div>
     			<h2 class="m-top-1r">GMO</h2>
     			<h3>Anežka Humejová, Darja Koževiková, Petra Jandová</h3>
-    			<video controls class="w-70"
+    			<video id="gmo" controls class="w-70"
     				   src="{{ url_for('static', filename='videos/student_projects/R4A/gmo.mp4') }}">Video</video>
     		</div>
     		<div>
     			<h2 class="m-top-1r">Třídění odpadu</h2>
     			<h3>Petr Pícka, Štěpán Fedorek, Adam Rek</h3>
-    			<video controls class="w-70"
+    			<video id="odpad" controls class="w-70"
     				   src="{{ url_for('static', filename='videos/student_projects/R4A/odpad.mp4') }}">Video</video>
     		</div>
     	</div>
