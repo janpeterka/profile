@@ -7,9 +7,11 @@ import os
 from flask import Blueprint
 
 from flask import render_template as template
+
 # from flask import request, redirect
 # from flask import jsonify
 from flask import send_file
+
 # from flask import abort
 
 # from flask import current_app as application
@@ -22,30 +24,30 @@ from app import models
 from pathlib import Path
 
 BLUEPRINT_ROOT = os.path.dirname(os.path.realpath(__file__))
-SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, '../public/songbooks/')
-MMS_DIR = os.path.join(BLUEPRINT_ROOT, '../public/mms/')
+SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, "../public/songbooks/")
+MMS_DIR = os.path.join(BLUEPRINT_ROOT, "../public/mms/")
 
-main_blueprint = Blueprint('main', __name__)
+main_blueprint = Blueprint("main", __name__)
 
 
 # MAIN
-@main_blueprint.route('/', methods=['GET'])
+@main_blueprint.route("/", methods=["GET"])
 def main():
-    return template('dashboard.tpl')
+    return template("dashboard.tpl")
 
 
-@main_blueprint.route('/newsletter', methods=['GET'])
+@main_blueprint.route("/newsletter", methods=["GET"])
 def show_newsletter():
-    return template('newsletter_subscribe.html.j2')
+    return template("newsletter_subscribe.html.j2")
 
 
-@main_blueprint.route('/portfolio', methods=['GET'])
+@main_blueprint.route("/portfolio", methods=["GET"])
 def show_portfolio():
-    return template('portfolio.tpl')
+    return template("portfolio.tpl")
 
 
-@main_blueprint.route('/songbooks', methods=['GET'])
-@main_blueprint.route('/zpevniky', methods=['GET'])
+@main_blueprint.route("/songbooks", methods=["GET"])
+@main_blueprint.route("/zpevniky", methods=["GET"])
 def show_songbooks():
     folders = []
     for folder in os.walk(SONGBOOKS_DIR):
@@ -60,10 +62,17 @@ def show_songbooks():
 
     folders.sort(key=lambda x: x.name, reverse=False)
 
-    return template('songbooks.tpl', folders=folders)
+    return template("songbooks.tpl", folders=folders)
 
 
-@main_blueprint.route('/songbooks/<filename>', methods=['GET'])
+@main_blueprint.route("/songbooks/<filename>", methods=["GET"])
 def download_songbook_file(filename):
-    return send_file(SONGBOOKS_DIR + filename.split('.')[0] + "/" + filename,
-                     attachment_filename=filename)
+    return send_file(
+        SONGBOOKS_DIR + filename.split(".")[0] + "/" + filename,
+        attachment_filename=filename,
+    )
+
+
+@main_blueprint.route("/studentske_projekty", methods=["GET"])
+def show_student_projects():
+    return template("student_projects.html.j2")

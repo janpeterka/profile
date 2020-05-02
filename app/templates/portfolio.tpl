@@ -3,17 +3,6 @@
     Portfolio
 {% endblock %}
 
-{% block style %}
-<style>
-.portfolio-item { 
-    font-family: Nunito; 
-}
-</style>
-{% endblock %}
-
-{% block script %}
-{% endblock %}
-
 {% block content %}
     {% include('navbar.html.j2') %}
     <div class="container">
