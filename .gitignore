@@ -9,3 +9,4 @@ v_*/
 .env
 .flaskenv
 
+app/static/videos/

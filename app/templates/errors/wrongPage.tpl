@@ -3,20 +3,6 @@
     Tady nemáte co pohledávat
 {% endblock %}
 
-{% block style %}
-    <style type="text/css" media="screen">
-    .main{
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
-    }
-    </style>    
-{% endblock %}
-
-{% block script %}
-
-{% endblock %}
-
 {% block content %}
     {% include('navbar.html.j2') %}
     <div class="container">
