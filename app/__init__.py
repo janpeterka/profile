@@ -39,9 +39,9 @@ def create_app():
     from app.main import create_module as main_create_module
     main_create_module(application)
 
-    # Poezie module
-    from app.poezie import create_module as poezie_create_module
-    poezie_create_module(application)
+    # Poetry module
+    from app.blueprints.poetry import create_module as poetry_create_module
+    poetry_create_module(application)
 
     # Integrations module
     from app.integrations import create_module as integrations_create_module

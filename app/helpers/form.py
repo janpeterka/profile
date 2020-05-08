@@ -2,7 +2,7 @@ from werkzeug.datastructures import MultiDict
 
 from flask import session
 
-from app.poezie.forms import *
+from app.blueprints.poetry.controllers.forms import *
 
 
 def create_form(form_class, **kwargs):

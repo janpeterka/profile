@@ -12,10 +12,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form class="form-group" action="/poezie/post" method="post">
+				<form class="form-group" action="/poetry/post" method="post">
 					{{ form.csrf_token }}
 		            {% from "_form_element.html.j2" import render_field %}
-		            {{ render_field(form.poetry, "form-control") }}
+		            {{ render_field(form.name, "form-control") }}
 		            {{ render_field(form.created_by, "form-control") }}
 		            {{ render_field(form.latitude, "form-control") }}
 		            {{ render_field(form.longitude, "form-control") }}

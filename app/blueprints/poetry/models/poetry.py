@@ -3,8 +3,8 @@ import datetime
 from app import db
 
 
-class Poezie(db.Model):
-    __tablename__ = "poezie"
+class Poetry(db.Model):
+    __tablename__ = "poetry"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255))
@@ -25,5 +25,5 @@ class Poezie(db.Model):
 
     @staticmethod
     def load(id):
-        item = db.session.query(Poezie).filter(Poezie.id == id).first()
+        item = db.session.query(Poetry).filter(Poetry.id == id).first()
         return item
