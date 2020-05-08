@@ -3,8 +3,8 @@
 
 from flask import Blueprint
 
-from app.integrations.connectors.toggl import TogglConnector
-from app.integrations.connectors.exist import ExistConnector
+from .connectors.toggl import TogglConnector
+from .connectors.exist import ExistConnector
 
 integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integrations")
 

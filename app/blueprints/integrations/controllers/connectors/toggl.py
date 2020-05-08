@@ -4,9 +4,9 @@ import json
 import datetime
 import urllib.parse
 
-from flask import jsonify
+# from flask import jsonify
 
-from app.integrations.connectors.connector import Connector
+from .connector import Connector
 
 
 class TogglConnector(Connector):

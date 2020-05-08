@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "base.html.j2" %}
 {% block title %}
     Portfolio
 {% endblock %}
@@ -7,7 +7,7 @@
     {% include('navbar.html.j2') %}
     <div class="container">
         <div class="main">
-            {% import "portfolio-item.tpl" as item %}
+            {% import "portfolio_item.html.j2" as item %}
 
             <div class="portfolio-item">
                 {{ item.title(

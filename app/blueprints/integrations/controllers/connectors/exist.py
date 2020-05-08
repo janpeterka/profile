@@ -2,9 +2,9 @@ import datetime
 import os
 import requests
 
-from app.integrations.connectors.connector import Connector
+from .connector import Connector
 
-from app.integrations.connectors.toggl import TogglConnector
+from .toggl import TogglConnector
 
 
 class ExistConnector(Connector):

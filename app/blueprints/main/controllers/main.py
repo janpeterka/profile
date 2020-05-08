@@ -1,31 +1,15 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# run by pyserver
-
-
 import os
-from flask import Blueprint
-
-from flask import render_template as template
-
-# from flask import request, redirect
-# from flask import jsonify
-from flask import send_file
-
-# from flask import abort
-
-# from flask import current_app as application
-
-# import requests
-# import json
-
-from app import models
-
 from pathlib import Path
 
+from flask import Blueprint
+from flask import render_template as template
+from flask import send_file
+
+from app.blueprints.main.models.folder import Folder
+
+
 BLUEPRINT_ROOT = os.path.dirname(os.path.realpath(__file__))
-SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, "../public/songbooks/")
-MMS_DIR = os.path.join(BLUEPRINT_ROOT, "../public/mms/")
+SONGBOOKS_DIR = os.path.join(BLUEPRINT_ROOT, "../../../public/songbooks/")
 
 main_blueprint = Blueprint("main", __name__)
 
@@ -33,7 +17,7 @@ main_blueprint = Blueprint("main", __name__)
 # MAIN
 @main_blueprint.route("/", methods=["GET"])
 def main():
-    return template("dashboard.tpl")
+    return template("dashboard.html.j2")
 
 
 @main_blueprint.route("/newsletter", methods=["GET"])
@@ -43,7 +27,7 @@ def show_newsletter():
 
 @main_blueprint.route("/portfolio", methods=["GET"])
 def show_portfolio():
-    return template("portfolio.tpl")
+    return template("portfolio.html.j2")
 
 
 @main_blueprint.route("/songbooks", methods=["GET"])
@@ -52,7 +36,7 @@ def show_songbooks():
     folders = []
     for folder in os.walk(SONGBOOKS_DIR):
         if os.path.isdir(folder[0]):
-            folders.append(models.Folder(folder[0]))
+            folders.append(Folder(folder[0]))
 
     if len(folders) > 0:
         del folders[0]
@@ -62,7 +46,7 @@ def show_songbooks():
 
     folders.sort(key=lambda x: x.name, reverse=False)
 
-    return template("songbooks.tpl", folders=folders)
+    return template("songbooks.html.j2", folders=folders)
 
 
 @main_blueprint.route("/songbooks/<filename>", methods=["GET"])

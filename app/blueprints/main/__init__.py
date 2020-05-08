@@ -1,4 +1,4 @@
-from app.main.routes import main_blueprint
+from app.blueprints.main.controllers.main import main_blueprint
 
 
 def create_module(app, **kwargs):
