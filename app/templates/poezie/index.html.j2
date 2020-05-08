@@ -13,11 +13,14 @@
 		<div class="row">
 			<div class="col">
 				<form class="form-group" action="/poezie/post" method="post">
-					Báseň: <input class="form-control" type="text" name="name">
-					Umístil: <input class="form-control" type="text" name="created_by">
-					X: <input class="form-control" id="coords_x" name="latitude" >
-					Y: <input class="form-control" id="coords_y" name="longitude" >
-					<input class="btn btn-primary" type="submit" name="submit" value="Uložit">
+					{{ form.csrf_token }}
+		            {% from "_form_element.html.j2" import render_field %}
+		            {{ render_field(form.poetry, "form-control") }}
+		            {{ render_field(form.created_by, "form-control") }}
+		            {{ render_field(form.latitude, "form-control") }}
+		            {{ render_field(form.longitude, "form-control") }}
+		            {{ render_field(form.photo, "form-control") }}
+		            {{ render_field(form.submit, "btn btn-primary", False) }}
 				</form>
 			</div>
 			<div class="col" data-controller="smaps">
@@ -58,8 +61,8 @@
 		var marker = new SMap.Marker(coords, name, options);
 		marker.decorate(SMap.Marker.Feature.Draggable);
 		layer.addMarker(marker);
-		$("#coords_x")[0].value = marker._coords.x
-		$("#coords_y")[0].value = marker._coords.y
+		$("#latitude")[0].value = marker._coords.x
+		$("#longitude")[0].value = marker._coords.y
 		return marker
     }
 	</script>
