@@ -17,17 +17,17 @@ main_blueprint = Blueprint("main", __name__)
 # MAIN
 @main_blueprint.route("/", methods=["GET"])
 def main():
-    return template("dashboard.html.j2")
+    return template("main/dashboard.html.j2")
 
 
 @main_blueprint.route("/newsletter", methods=["GET"])
 def show_newsletter():
-    return template("newsletter_subscribe.html.j2")
+    return template("main/newsletter_subscribe.html.j2")
 
 
 @main_blueprint.route("/portfolio", methods=["GET"])
 def show_portfolio():
-    return template("portfolio.html.j2")
+    return template("main/portfolio.html.j2")
 
 
 @main_blueprint.route("/songbooks", methods=["GET"])
@@ -46,7 +46,7 @@ def show_songbooks():
 
     folders.sort(key=lambda x: x.name, reverse=False)
 
-    return template("songbooks.html.j2", folders=folders)
+    return template("main/songbooks.html.j2", folders=folders)
 
 
 @main_blueprint.route("/songbooks/<filename>", methods=["GET"])
@@ -59,4 +59,4 @@ def download_songbook_file(filename):
 
 @main_blueprint.route("/studentske_projekty", methods=["GET"])
 def show_student_projects():
-    return template("student_projects.html.j2")
+    return template("main/student_projects.html.j2")
