@@ -17,6 +17,7 @@ Flask-SQLAlchemy = "*"
 Flask-WTF = "*"
 pymysql = "*"
 flask-migrate = "*"
+flask-classful = "*"
 
 [requires]
 python_version = "3.6"
