@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form class="form-group" action="/poetry/post" method="post">
+				<form class="form-group" action="/poetry/post" method="post" enctype=multipart/form-data>
 					{{ form.csrf_token }}
 		            {% from "_form_element.html.j2" import render_field %}
 		            {{ render_field(form.name, "form-control") }}
@@ -23,7 +23,7 @@
 		            {{ render_field(form.submit, "btn btn-primary", False) }}
 				</form>
 			</div>
-			<div class="col" data-controller="smaps">
+			<div class="col">
     			<div id="map" style="width: 30rem; height: 20rem; margin-top: 1.5rem;"></div>
 			</div>
 		</div>

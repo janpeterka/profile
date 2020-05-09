@@ -1,10 +1,13 @@
 import os
 
+from werkzeug.datastructures import CombinedMultiDict
+
 from flask import Blueprint
-from flask import redirect, url_for, request
+from flask import redirect, request, send_from_directory
 from flask import render_template as template
 
 from app.helpers.form import save_form_to_session, create_form
+from app.handlers.files import FileHandler
 
 from .forms.poetry import PoetryForm
 
@@ -26,33 +29,48 @@ def index():
 
 @poetry_blueprint.route("/poetry/new", methods=["GET"])
 def new():
-    form = create_form(PoetryForm)
+    form = PoetryForm(CombinedMultiDict((request.files, request.form)))
     return template("poetry/new.html.j2", form=form)
 
 
 @poetry_blueprint.route("/poetry/show/<id>", methods=["GET"])
 def show(id):
     item = Poetry.load(id)
+    item.file_path = FileHandler().get_path(item)
 
     return template("poetry/show.html.j2", poetry=item)
 
 
 @poetry_blueprint.route("/poetry/post", methods=["POST"])
 def post():
-    form = PoetryForm(request.form)
+    form = PoetryForm(CombinedMultiDict((request.files, request.form)))
     if not form.validate_on_submit():
         save_form_to_session(request.form)
-        return redirect(url_for("DietsView:new"))
+        return redirect("/poetry/new")
 
-    # save photo
-    #
-    #
+    secure_filename = FileHandler().save(form.photo.data)
+
     poetry = Poetry(
-        name=request.form.get("name"),
-        created_by=request.form.get("created_by"),
-        latitude=request.form.get("latitude"),
-        longitude=request.form.get("longitude"),
-        # photo_path=
+        name=form.name.data,
+        created_by=form.created_by.data,
+        latitude=form.latitude.data,
+        longitude=form.longitude.data,
+        filename=secure_filename,
     )
     poetry.save()
     return redirect("show/" + str(poetry.id))
+
+
+@poetry_blueprint.route("/poetry/images/<item_id>", methods=["GET"])
+def images(item_id):
+    # from werkzeug.utils import secure_filename
+    item = Poetry.load(item_id)
+    print(item.filename)
+    # path = os.path.join("/home/jan/programming/profile/app/uploads/images/")
+    # path = os.path.join(BLUEPRINT_ROOT, "../../../uploads/images/")
+    # print(path)
+    # return send_from_directory(path, secure_filename(item.filename))
+
+    file = FileHandler().show(item)
+    print(file)
+    return file

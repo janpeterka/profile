@@ -9,7 +9,7 @@ class Poetry(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255))
     created_by = db.Column(db.String(255))
-    photo_path = db.Column(db.String(511), nullable=True)
+    filename = db.Column(db.String(511), nullable=True)
 
     latitude = db.Column(db.Float())
     longitude = db.Column(db.Float())
