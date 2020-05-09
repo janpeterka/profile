@@ -18,9 +18,16 @@ poetry_blueprint = Blueprint("poetry", __name__)
 
 @poetry_blueprint.route("/poetry", methods=["GET"])
 @poetry_blueprint.route("/poetry/", methods=["GET"])
+@poetry_blueprint.route("/poetry/all", methods=["GET"])
 def index():
+    all_poetry = Poetry.load_all()
+    return template("poetry/index.html.j2", all_poetry=all_poetry)
+
+
+@poetry_blueprint.route("/poetry/new", methods=["GET"])
+def new():
     form = create_form(PoetryForm)
-    return template("poetry/index.html.j2", form=form)
+    return template("poetry/new.html.j2", form=form)
 
 
 @poetry_blueprint.route("/poetry/show/<id>", methods=["GET"])
@@ -38,8 +45,8 @@ def post():
         return redirect(url_for("DietsView:new"))
 
     # save photo
-    # 
-    # 
+    #
+    #
     poetry = Poetry(
         name=request.form.get("name"),
         created_by=request.form.get("created_by"),

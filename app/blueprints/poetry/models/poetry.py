@@ -27,3 +27,8 @@ class Poetry(db.Model):
     def load(id):
         item = db.session.query(Poetry).filter(Poetry.id == id).first()
         return item
+
+    @staticmethod
+    def load_all():
+        my_objects = db.session.query(Poetry)
+        return my_objects
