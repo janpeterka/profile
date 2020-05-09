@@ -10,10 +10,10 @@ class FileHandler(object):
         DIR_ROOT = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../")
         self.folder = os.path.join(DIR_ROOT, "uploads/")
         if folder is not None:
-            # TODO: create folder if doesn't exist 
+            # TODO: create folder if doesn't exist
             self.folder = os.path.join(self.folder, folder)
 
-        self.allowed_extension = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
+        # self.allowed_extension = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
 
     def save(self, file):
         file.save(os.path.join(self.folder, secure_filename(file.filename)))
