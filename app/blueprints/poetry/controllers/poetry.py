@@ -36,7 +36,7 @@ def new():
 @poetry_blueprint.route("/poetry/show/<id>", methods=["GET"])
 def show(id):
     item = Poetry.load(id)
-    item.file_path = FileHandler().get_path(item)
+    item.file_path = FileHandler(folder="images/poetry").get_path(item)
 
     return template("poetry/show.html.j2", poetry=item)
 
@@ -48,7 +48,7 @@ def post():
         save_form_to_session(request.form)
         return redirect("/poetry/new")
 
-    secure_filename = FileHandler().save(form.photo.data)
+    secure_filename = FileHandler(folder="images/poetry").save(form.photo.data)
 
     poetry = Poetry(
         name=form.name.data,
@@ -63,14 +63,6 @@ def post():
 
 @poetry_blueprint.route("/poetry/images/<item_id>", methods=["GET"])
 def images(item_id):
-    # from werkzeug.utils import secure_filename
     item = Poetry.load(item_id)
-    print(item.filename)
-    # path = os.path.join("/home/jan/programming/profile/app/uploads/images/")
-    # path = os.path.join(BLUEPRINT_ROOT, "../../../uploads/images/")
-    # print(path)
-    # return send_from_directory(path, secure_filename(item.filename))
-
-    file = FileHandler().show(item)
-    print(file)
+    file = FileHandler(folder="images/poetry").show(item)
     return file
