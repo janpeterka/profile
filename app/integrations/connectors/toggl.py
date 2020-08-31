@@ -18,11 +18,14 @@ class TogglConnector(Connector):
 
         self.known_tasks = {
             "workout": "body",
+            "exercise": "body",
             "yoga": "body",
             "running": "body",
+            "writing": "hobby",
             "guitar": "hobby",
             "piano": "hobby",
             "meditation": "meditation",
+            "a cleaning": "maintenance",
             "cleaning": "maintenance",
             "nap": "sleep",
         }
