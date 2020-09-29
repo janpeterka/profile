@@ -3,13 +3,19 @@
 
 from flask import Blueprint
 
+from flask import render_template as template
+
 from .connectors.toggl import TogglConnector
 from .connectors.exist import ExistConnector
 
 integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integrations")
 
 
-# TOGGL
+@integrations_blueprint.route("/")
+def main():
+    return template("integrations/main.html.j2")
+
+# toggl
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/<entry_name>")
@@ -29,7 +35,7 @@ def toggl_get_todays_entries(secret_key):
     connector = TogglConnector(secret_key)
     return connector.get_todays_time_entries()
 
-
+# Exist
 @integrations_blueprint.route("/<secret_key>/exist/daily")
 def exist_daily(secret_key):
     connector = ExistConnector(secret_key)
