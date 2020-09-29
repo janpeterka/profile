@@ -6,6 +6,12 @@
 	{% include('navbar.html.j2') %}
     <div class="container">
     	integrations
+		<div>
+	    	Tokens
+	    	{% for token in current_user.tokens %}
+	    		<li>{{ token.service.name }} - {{ token.value }}</li>
+	    	{% endfor %}
+		</div>
     </div>
 {% endblock %}
 

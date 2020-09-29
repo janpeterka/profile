@@ -1,7 +1,7 @@
 """Create all
 
 Revision ID: fbae07a739a8
-Revises: 
+Revises:
 Create Date: 2020-09-29 16:10:48.629845
 
 """
