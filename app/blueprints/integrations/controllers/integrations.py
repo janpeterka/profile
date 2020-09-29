@@ -6,7 +6,7 @@ from flask import redirect
 
 from flask import render_template as template
 
-from flask_security import current_user
+from flask_security import current_user, login_required
 
 from .connectors.toggl import TogglConnector
 from .connectors.exist import ExistConnector
@@ -18,6 +18,7 @@ integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integr
 
 
 @integrations_blueprint.route("/")
+@login_required
 def main():
     import random
     import string

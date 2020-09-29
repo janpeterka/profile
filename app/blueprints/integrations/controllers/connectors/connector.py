@@ -1,4 +1,4 @@
-from app.blueprints.auth.models.user import User
+from app.blueprints.auth.models.users import User
 
 
 class Connector:

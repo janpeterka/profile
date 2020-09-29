@@ -6,6 +6,7 @@
 	{% include('navbar.html.j2') %}
     <div class="container">
     	integrations
+    	<div>Your secret key - {{ current_user.secret_key }}</div>
 		<div>Toggl token - {{ current_user.toggl_token }}</div>
 
 		<div>
