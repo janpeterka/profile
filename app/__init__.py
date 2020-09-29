@@ -1,12 +1,12 @@
 from flask import Flask
 # from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 
 
 # mail = Mail()
 db = SQLAlchemy()
-# migrate = Migrate()
+migrate = Migrate()
 
 
 def create_app():
@@ -31,20 +31,20 @@ def create_app():
     # APPS
     # mail.init_app(application)
     db.init_app(application)
-    # migrate.init_app(application, db)
+    migrate.init_app(application, db)
 
     # MODULES
 
     # Main module
-    from app.main import create_module as main_create_module
+    from app.blueprints.main import create_module as main_create_module
     main_create_module(application)
 
-    # Poezie module
-    from app.poezie import create_module as poezie_create_module
-    poezie_create_module(application)
+    # Poetry module
+    from app.blueprints.poetry import create_module as poetry_create_module
+    poetry_create_module(application)
 
     # Integrations module
-    from app.integrations import create_module as integrations_create_module
+    from app.blueprints.integrations import create_module as integrations_create_module
     integrations_create_module(application)
 
     # Errors module
