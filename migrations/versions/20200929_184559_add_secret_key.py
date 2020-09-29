@@ -1,4 +1,4 @@
-"""empty message
+"""Add user secret key column
 
 Revision ID: cbf948acdd83
 Revises: dad81eb35d67
