@@ -6,6 +6,8 @@
 	{% include('navbar.html.j2') %}
     <div class="container">
     	integrations
+		<div>Toggl token - {{ current_user.toggl_token }}</div>
+
 		<div>
 	    	Tokens
 	    	{% for token in current_user.tokens %}

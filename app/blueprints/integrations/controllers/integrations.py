@@ -19,7 +19,17 @@ integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integr
 
 @integrations_blueprint.route("/")
 def main():
-    print(current_user.tokens)
+    import random
+    import string
+
+    if current_user.secret_key is None:
+        N = 24
+        symbols = string.ascii_lowercase + string.ascii_uppercase + string.digits
+        current_user.secret_key = "".join(
+            random.SystemRandom().choice(symbols) for _ in range(N)
+        )
+        current_user.save()
+
     return template("integrations/main.html.j2")
 
 

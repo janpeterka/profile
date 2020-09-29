@@ -19,7 +19,7 @@ depends_on = None
 def upgrade():
     op.execute(
         """
-        INSERT INTO services (name, description) VALUES ("toggl", "toggl desc"), ("exist", "exist desc");
+        INSERT INTO services (name, description) VALUES ("toggl", "toggl - time tracking software"), ("exist", "exist - your life in stats");
         """
     )
 
