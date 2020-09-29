@@ -20,25 +20,25 @@ def wrongPage():
 
 @errors_blueprint.route('/shutdown')
 def shutdown():
-    return template('errors/shutdown.tpl')
+    return template('errors/shutdown.html.j2')
 
 
 @errors_blueprint.app_errorhandler(404)
 def error404(error):
     # Missing page
     application.logger.info(error)
-    return template('errors/err404.tpl')
+    return template('errors/err404.html.j2')
 
 
 @errors_blueprint.errorhandler(405)
 def error405(error=None):
     # Action not allowed
     application.logger.info(error)
-    return template('errors/wrongPage.tpl')
+    return template('errors/wrongPage.html.j2')
 
 
 @errors_blueprint.errorhandler(500)
 def error500(error):
     # Internal error
     application.logger.error(error)
-    return template('errors/err500.tpl')
+    return template('errors/err500.html.j2')
