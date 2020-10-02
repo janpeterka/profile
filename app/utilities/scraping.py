@@ -19,7 +19,7 @@ def simple_get(url):
                 return None
 
     except RequestException as e:
-        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
+        log_error("Error during requests to {0} : {1}".format(url, str(e)))
         return None
 
 
@@ -27,8 +27,12 @@ def is_good_response(response):
     """
     Returns true if the response seems to be HTML, false otherwise
     """
-    content_type = response.headers['Content-Type'].lower()
-    return (response.status_code == 200 and content_type is not None and content_type.find('html') > -1)
+    content_type = response.headers["Content-Type"].lower()
+    return (
+        response.status_code == 200
+        and content_type is not None
+        and content_type.find("html") > -1
+    )
 
 
 def log_error(e):
@@ -36,7 +40,7 @@ def log_error(e):
 
 
 def get_html(url):
-    html = BeautifulSoup(simple_get(url), 'html.parser', from_encoding="utf-8")
+    html = BeautifulSoup(simple_get(url), "html.parser", from_encoding="utf-8")
     return html
 
 
