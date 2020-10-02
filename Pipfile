@@ -18,6 +18,8 @@ Flask-WTF = "*"
 pymysql = "*"
 flask-migrate = "*"
 flask-classful = "*"
+flask-security-too = "*"
+bcrypt = "*"
 
 [requires]
 python_version = "3.6"

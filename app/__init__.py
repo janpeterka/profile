@@ -3,11 +3,18 @@ from flask import Flask
 # from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_security import Security, SQLAlchemyUserDatastore
 
 
 # mail = Mail()
 db = SQLAlchemy()
 migrate = Migrate()
+security = Security()
+
+from app.blueprints.auth.models.roles import Role
+from app.blueprints.auth.models.users import User
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
 
 def create_app():
@@ -34,8 +41,13 @@ def create_app():
     # mail.init_app(application)
     db.init_app(application)
     migrate.init_app(application, db)
+    security.init_app(application, user_datastore)
 
     # MODULES
+    # Auth module
+    from app.blueprints.auth import create_module as auth_create_module
+
+    auth_create_module(application)
 
     # Main module
     from app.blueprints.main import create_module as main_create_module

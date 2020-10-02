@@ -1,0 +1,15 @@
+{% extends "base.html.j2" %}
+{% block title %}Jan Peterka{% endblock %}
+{% block script %}{% endblock %}
+
+{% block content %}
+	{% include('navbar.html.j2') %}
+    <div class="container">
+    	Welcome {{ current_user.email }}
+    	
+    	<p>
+    	<a href="/integrations">Integrations</a>
+    </div>
+{% endblock %}
+
+

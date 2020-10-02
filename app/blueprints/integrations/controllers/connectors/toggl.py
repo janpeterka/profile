@@ -13,7 +13,7 @@ class TogglConnector(Connector):
     def __init__(self, secret_key):
         super(TogglConnector, self).__init__(secret_key)
         self.service_url = "www.toggl.com"
-        self.api_token = os.environ.get("TOGGL_API_TOKEN")
+        self.api_token = self.user.toggl_token
         self.url = "https://" + self.api_token + ":api_token" + "@" + self.service_url
 
         self.known_tasks = {

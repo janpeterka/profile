@@ -1,5 +1,4 @@
 import datetime
-import os
 import requests
 
 from .connector import Connector
@@ -11,7 +10,7 @@ class ExistConnector(Connector):
     def __init__(self, secret_key):
         super(ExistConnector, self).__init__(secret_key)
         self.secret_key = secret_key
-        self.api_token = os.environ.get("EXIST_API_TOKEN")
+        self.api_token = self.user.exist_token
 
     def do_request(self, request_type="get", headers=None, json=None):
         if not headers:

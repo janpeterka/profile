@@ -2,14 +2,49 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint
+from flask import redirect
+
+from flask import render_template as template
+
+from flask_security import current_user, login_required
 
 from .connectors.toggl import TogglConnector
 from .connectors.exist import ExistConnector
 
+from ..models.tokens import Token
+from ..models.services import Service
+
 integrations_blueprint = Blueprint("integrations", __name__, url_prefix="/integrations")
 
 
-# TOGGL
+@integrations_blueprint.route("/")
+@login_required
+def main():
+    import random
+    import string
+
+    if current_user.secret_key is None:
+        N = 24
+        symbols = string.ascii_lowercase + string.ascii_uppercase + string.digits
+        current_user.secret_key = "".join(
+            random.SystemRandom().choice(symbols) for _ in range(N)
+        )
+        current_user.save()
+
+    return template("integrations/main.html.j2")
+
+
+@integrations_blueprint.route("/add_toggl/<api_key>",)
+def add_toggl_key(api_key):
+    token = Token()
+    token.service = Service.load_by_name("toggl")
+    token.value = api_key
+    token.user = current_user
+    token.save()
+    return redirect("/integrations")
+
+
+# toggl
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/")
 @integrations_blueprint.route("/<secret_key>/toggl/start/<project_name>/<entry_name>")
@@ -30,6 +65,7 @@ def toggl_get_todays_entries(secret_key):
     return connector.get_todays_time_entries()
 
 
+# Exist
 @integrations_blueprint.route("/<secret_key>/exist/daily")
 def exist_daily(secret_key):
     connector = ExistConnector(secret_key)

@@ -1,0 +1,20 @@
+{% extends "base.html.j2" %}
+{% block title %}Integrations - {{ current_user.email }}{% endblock %}
+{% block script %}{% endblock %}
+
+{% block content %}
+	{% include('navbar.html.j2') %}
+    <div class="container">
+    	integrations
+    	<div>Your secret key - {{ current_user.secret_key }}</div>
+		<div>Toggl token - {{ current_user.toggl_token }}</div>
+
+		<div>
+	    	Tokens
+	    	{% for token in current_user.tokens %}
+	    		<li>{{ token.service.name }} - {{ token.value }}</li>
+	    	{% endfor %}
+		</div>
+    </div>
+{% endblock %}
+
