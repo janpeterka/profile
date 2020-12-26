@@ -69,7 +69,6 @@ class World:
         ]
 
     def add_generation(self, first=False):
-
         if first:
             remaining_population = self.population_size
             while remaining_population > 0:
@@ -79,11 +78,14 @@ class World:
                     remaining_population -= 1
 
         else:
-            populations = [tile for tile in self.tiles if tile.human]
+            populations = [tile for tile in self.tiles if tile.human and len(tile.surrounding_settleable_tiles) > 0]
             remaining_population = self.population_size - len(populations)
-            while remaining_population > 0:
+            while remaining_population > 0 and populations:
                 pop = random.choice(populations)
-                tile = random.choice(pop.surrounding_tiles)
+                if not pop.surrounding_settleable_tiles:
+                    populations = [tile for tile in self.tiles if tile.human and len(tile.surrounding_settleable_tiles) > 0]
+                    continue
+                tile = random.choice(pop.surrounding_settleable_tiles)
                 if tile.settleable:
                     tile.add_human()
                     remaining_population -= 1

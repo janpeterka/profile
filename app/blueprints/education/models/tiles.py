@@ -44,7 +44,7 @@ class Tile:
         else:
             return ""
         # return self._area_resources_html
-    
+
     @property
     def html(self):
         return f"<td class='tile {self.type} {self.human_class}' style='width: {self.cell_size}rem; height: {self.cell_size}rem;'>{self.area_resources_html}</td>"
@@ -52,6 +52,10 @@ class Tile:
     @property
     def area_resources(self):
         return self.resources + sum(tile.resources for tile in self.surrounding_tiles)
+
+    @property
+    def surrounding_settleable_tiles(self):
+        return [tile for tile in self.surrounding_tiles if tile.settleable]
 
     @property
     def surrounding_tiles(self):

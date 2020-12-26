@@ -20,26 +20,58 @@ class WorldView(FlaskView):
             self.world = World(size=20)
 
         # save totals across steps
-        if session.get("total_resources_scores") is None:
-            session["total_resources_scores"] = {}
-
-        print(session.get("total_resources_scores"))
+        if not session.get("total_resources_scores"):
+            session["total_resources_scores"] = {"0": "0"}
+        # print(session["total_resources_scores"])
 
     def after_request(self, name, response):
         session["world"] = jsonpickle.encode(self.world)
-        session["total_resources_scores"][
-            str(len(session["total_resources_scores"]) + 1)
-        ] = self.world.score.total_resources
+
+        # print(name)
+        if name in ("add_generation", "next_generation"):
+            curr_len = len(session.get("total_resources_scores"))
+            session["total_resources_scores"][
+                str(curr_len)
+            ] = f"{self.world.score.total_resources}"
+        # print(session.get("total_resources_scores"))
         return response
 
     def index(self):
-        return template("education/genetic_world_generator.html.j2", world=self.world)
+        from flask_charts import Chart
 
-    def before_new_world(self):
-        session.pop("world")
-        session.pop("total_resources_scores")
+        my_chart = Chart("LineChart", "my_chart")
+        my_chart.data.add_column("number", "vol")
+        my_chart.data.add_column("number", "value")
+
+        total_resources_scores = session.get("total_resources_scores")
+
+        if total_resources_scores:
+            for i in range(len(total_resources_scores)):
+                my_chart.data.add_row([str(i), total_resources_scores[str(i)]])
+
+            # for key, value in collections.OrderedDict(sorted(session["total_resources_scores"].items())).items():
+                # my_chart.data.add_row([int(key), int(value)])
+
+        return template(
+            "education/genetic_world_generator.html.j2",
+            world=self.world,
+            chart=my_chart,
+        )
+
+    # def before_new_world(self):
 
     def new_world(self):
+        try:
+            session.pop("world")
+            session["world"] = None
+        except Exception:
+            pass
+
+        try:
+            session.pop("total_resources_scores")
+            session["total_resources_scores"] = {}
+        except Exception:
+            pass
         self.world = World(20)
         return redirect(url_for("WorldView:index"))
 
@@ -48,8 +80,11 @@ class WorldView(FlaskView):
         return redirect(url_for("WorldView:index"))
 
     def next_generation(self):
+        print("select_fittest")
         self.world.select_fittest()
+        print("add_generation")
         self.world.add_generation()
+        print("done")
         return redirect(url_for("WorldView:index"))
 
     # def select_fittest(self):
