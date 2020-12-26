@@ -54,6 +54,12 @@ body {
 
 
 /* Education | Genetic world generation */
+
+.tile {
+    border: solid 1px;
+    text-align: center;
+}
+
 .tile.water {
     background-color: blue;
 }
@@ -68,4 +74,11 @@ body {
 
 .tile.forrest {
     background-color: green;
+}
+
+.tile.human {
+    /*border-color: red !important;*/
+    border-width: 2px;
+    color: red;
+    font-weight: bold;
 }
