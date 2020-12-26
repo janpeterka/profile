@@ -64,6 +64,11 @@ def create_app():
 
     integrations_create_module(application)
 
+    # Education module
+    from app.blueprints.education import create_module as education_create_module
+
+    education_create_module(application)
+
     # Errors module
     from app.errors import create_module as errors_create_module
 
