@@ -12,6 +12,7 @@ import jsonpickle
 
 class WorldView(FlaskView):
     def before_request(self, name):
+        # session.pop("world")
         # try to load world from session
         world_from_session = session.get("world")
         if world_from_session is not None:
@@ -49,9 +50,6 @@ class WorldView(FlaskView):
             for i in range(len(total_resources_scores)):
                 my_chart.data.add_row([str(i), total_resources_scores[str(i)]])
 
-            # for key, value in collections.OrderedDict(sorted(session["total_resources_scores"].items())).items():
-                # my_chart.data.add_row([int(key), int(value)])
-
         return template(
             "education/genetic_world_generator.html.j2",
             world=self.world,
@@ -80,6 +78,8 @@ class WorldView(FlaskView):
         return redirect(url_for("WorldView:index"))
 
     def next_generation(self):
+        print("mutate")
+        self.world.mutate()
         print("select_fittest")
         self.world.select_fittest()
         print("add_generation")

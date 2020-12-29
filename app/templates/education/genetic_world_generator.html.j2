@@ -10,7 +10,7 @@
 
 {% block content %}
 	{% include('navbar.html.j2') %}
-    <div class="container">
+    {# <div class="container"> #}
         <div class="row">
     		
     	<div class="col-2">
@@ -32,7 +32,7 @@
             {{ chart() }}
             Max resources: {{ world.score.max_resources }} / {{ world.score.possible_max_resources }}<br>
         </div>
-        </div>
+        {# </div> #}
     </div>
 {% endblock %}
 
