@@ -1,24 +1,24 @@
 import random
 
-from app import db
+# from app import db
 
-from app.helpers.base_mixin import BaseMixin
+# from app.helpers.base_mixin import BaseMixin
 
 
-class Tile(db.Model, BaseMixin):
-    __tablename__ = "education_tiles"
+class Tile():
+    # __tablename__ = "education_tiles"
 
-    id = db.Column(db.BigInteger, primary_key=True)
-    x = db.Column(db.BigInteger)
-    y = db.Column(db.BigInteger)
-    world_id = db.Column(db.ForeignKey("education_worlds.id"), nullable=False)
-    resources = db.Column(db.BigInteger)
+    # id = db.Column(db.BigInteger, primary_key=True)
+    # x = db.Column(db.BigInteger)
+    # y = db.Column(db.BigInteger)
+    # world_id = db.Column(db.ForeignKey("education_worlds.id"), nullable=False)
+    # resources = db.Column(db.BigInteger)
 
-    human = db.Column(db.Boolean)
-    habitable = db.Column(db.Boolean)
+    # human = db.Column(db.Boolean)
+    # habitable = db.Column(db.Boolean)
 
-    tile_type = db.Column(db.String(255))
-    __mapper_args__ = {"polymorphic_on": tile_type, "polymorphic_identity": "tile"}
+    # tile_type = db.Column(db.String(255))
+    # __mapper_args__ = {"polymorphic_on": tile_type, "polymorphic_identity": "tile"}
 
     def __init__(self, x, y, world):
         self.x = x
@@ -122,7 +122,7 @@ class Tile(db.Model, BaseMixin):
 
 
 class WaterTile(Tile):
-    __mapper_args__ = {"polymorphic_identity": "water"}
+    # __mapper_args__ = {"polymorphic_identity": "water"}
 
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
@@ -132,7 +132,7 @@ class WaterTile(Tile):
 
 
 class LandTile(Tile):
-    __mapper_args__ = {"polymorphic_identity": "land"}
+    # __mapper_args__ = {"polymorphic_identity": "land"}
 
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
@@ -141,15 +141,16 @@ class LandTile(Tile):
 
 
 class RockTile(Tile):
-    __mapper_args__ = {"polymorphic_identity": "rock"}
+    # __mapper_args__ = {"polymorphic_identity": "rock"}
 
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
+        self.type = "rock"
         self.resources = random.randint(1, 4)
 
 
 class ForrestTile(Tile):
-    __mapper_args__ = {"polymorphic_identity": "forrest"}
+    # __mapper_args__ = {"polymorphic_identity": "forrest"}
 
     def __init__(self, x, y, world):
         super().__init__(x, y, world)

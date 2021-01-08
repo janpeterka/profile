@@ -61,16 +61,19 @@ class WorldView(FlaskView):
     def new_world(self):
         try:
             session.pop("world")
-            session["world"] = None
         except Exception:
             pass
 
+        session["world"] = None
+
         try:
             session.pop("total_resources_scores")
-            session["total_resources_scores"] = {}
         except Exception:
             pass
+
+        session["total_resources_scores"] = {}
         self.world = World(20)
+
         return redirect(url_for("WorldView:index"))
 
     def add_generation(self):

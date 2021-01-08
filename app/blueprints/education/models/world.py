@@ -1,23 +1,23 @@
 import random
 
-from app import db
+# from app import db
 
-from app.helpers.base_mixin import BaseMixin
+# from app.helpers.base_mixin import BaseMixin
 
-from .tiles import Tile
+# from .tiles import Tile
 
 
-class World(db.Model, BaseMixin):
-    __tablename__ = "education_worlds"
+class World():
+    # __tablename__ = "education_worlds"
 
-    id = db.Column(db.BigInteger, primary_key=True)
-    size = db.Column(db.BigInteger)
-    population_size = db.Column(db.String(255))
-    minimal_resources = db.Column(db.String(255))
+    # id = db.Column(db.BigInteger, primary_key=True)
+    # size = db.Column(db.BigInteger)
+    # population_size = db.Column(db.String(255))
+    # minimal_resources = db.Column(db.String(255))
 
-    tiles = db.relationship(
-        "User", primaryjoin="World.id == Tile.world_id", backref="world",
-    )
+    # tiles = db.relationship(
+    #     "User", primaryjoin="World.id == Tile.world_id", backref="world",
+    # )
 
     def __init__(self, size=20):
         self.size = size
