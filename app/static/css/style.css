@@ -51,3 +51,34 @@ body {
 .m-top-1r {
     margin-top: 1rem;
 }
+
+
+/* Education | Genetic world generation */
+
+.tile {
+    border: solid 1px;
+    text-align: center;
+}
+
+.tile.water {
+    background-color: blue;
+}
+
+.tile.land {
+    background-color: lightgreen;
+}
+
+.tile.rock {
+    background-color: grey;
+}
+
+.tile.forrest {
+    background-color: green;
+}
+
+.tile.human {
+    /*border-color: red !important;*/
+    border-width: 2px;
+    color: red;
+    font-weight: bold;
+}

@@ -20,6 +20,8 @@ flask-migrate = "*"
 flask-classful = "*"
 flask-security-too = "*"
 bcrypt = "*"
+jsonpickle = "*"
+flask-charts = "*"
 
 [requires]
 python_version = "3.9"

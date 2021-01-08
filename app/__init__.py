@@ -5,11 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 
+from flask_charts import GoogleCharts
+
 
 # mail = Mail()
 db = SQLAlchemy()
 migrate = Migrate()
 security = Security()
+charts = GoogleCharts()
+
 
 from app.blueprints.auth.models.roles import Role
 from app.blueprints.auth.models.users import User
@@ -42,6 +46,7 @@ def create_app():
     db.init_app(application)
     migrate.init_app(application, db)
     security.init_app(application, user_datastore)
+    charts.init_app(application)
 
     # MODULES
     # Auth module
@@ -63,6 +68,11 @@ def create_app():
     from app.blueprints.integrations import create_module as integrations_create_module
 
     integrations_create_module(application)
+
+    # Education module
+    from app.blueprints.education import create_module as education_create_module
+
+    education_create_module(application)
 
     # Errors module
     from app.errors import create_module as errors_create_module
