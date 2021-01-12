@@ -207,11 +207,11 @@
         },
         "flask-security-too": {
             "hashes": [
-                "sha256:12cecf666e5e76d59e079976c1348de3158579196ec65ac47f450dc5bc0020b2",
-                "sha256:3c52b0e0c8453a012122aad102041fd71bd1ea025f5154bbfb1d20b4c6a4477e"
+                "sha256:a09d051ed7616a99dcaa604e718792319521820e245758fe1f42f7554c538da5",
+                "sha256:e67980297bb0e5b726b79164f9214af8548d67d3923e405cdd1a475bc53a4cc5"
             ],
             "index": "pypi",
-            "version": "==3.4.4"
+            "version": "==3.4.5"
         },
         "flask-sqlalchemy": {
             "hashes": [
@@ -252,11 +252,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:5c5a2720817414a6c41f0a49993908068243ae02c1635a228126519b509c8aed",
-                "sha256:bf792d480abbd5eda85794e4afb09dd538393f7d6e6ffef6e9f03d2014cf9450"
+                "sha256:ace61d5fc652dc280e7b6b4ff732a9c2d40db2c0f92bc6cb74e07b73d53a1771",
+                "sha256:fa5daa4477a7414ae34e95942e4dd07f62adf589143c875c133c1e53c4eff38d"
             ],
             "markers": "python_version < '3.8'",
-            "version": "==3.3.0"
+            "version": "==3.4.0"
         },
         "itsdangerous": {
             "hashes": [
