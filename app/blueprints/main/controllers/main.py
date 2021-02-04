@@ -60,3 +60,12 @@ def download_songbook_file(filename):
 @main_blueprint.route("/studentske_projekty", methods=["GET"])
 def show_student_projects():
     return template("main/student_projects.html.j2")
+
+
+@main_blueprint.route("/better", methods=["GET"])
+def show_better_life():
+    import datetime
+    from ..better_life_tasks import tasks
+    date_as_int = int(datetime.date.today().strftime('%Y%m%d'))
+    today_task = tasks[date_as_int % len(tasks)]
+    return template("main/better_life.html.j2", today_task=today_task)
