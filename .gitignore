@@ -7,6 +7,7 @@ v_*/
 *.pyc
 
 .env
+.env.prod
 .flaskenv
 
 app/static/videos/
