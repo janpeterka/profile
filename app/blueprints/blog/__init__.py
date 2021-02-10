@@ -1,4 +1,4 @@
-from app.blueprints.blog.controllers.main import blog_blueprint
+from app.blueprints.blog.controllers.blog import blog_blueprint
 
 
 def create_module(app, **kwargs):
