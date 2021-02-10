@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  application.register("tab-switcher", class extends Stimulus.Controller {
+    static get targets() {
+      return ["tabList"]
+    }
+
+  connect() {
+    this.generate_tab_list()
+  }
+  
+  generate_tab_list() {
+    var html = ""
+    this.list_all_tabs().forEach(element => html += "<span class='ml-4 mr-4' data-tab-name=" + element.dataset.tab + " data-action='click->tab-switcher#activate'>"+ element.dataset.tab +"</span>" )
+
+    this.tabListTarget.innerHTML = html
+  }
+
+  activate(e){
+    this.list_all_tabs().forEach(tab => tab.dataset.active = "false")
+    var activated_tab = document.querySelector("[data-tab="+ e.target.dataset.tabName +"]");
+    activated_tab.dataset.active = "true";
+  }
+
+  list_all_tabs() {
+    return document.querySelectorAll(".tab")
+  }
+
+})
+</script>

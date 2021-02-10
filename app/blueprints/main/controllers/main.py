@@ -66,6 +66,8 @@ def show_student_projects():
 def show_better_life():
     import datetime
     from ..better_life_tasks import tasks
+    from ..better_life_tasks import predictions
     date_as_int = int(datetime.date.today().strftime('%Y%m%d'))
     today_task = tasks[date_as_int % len(tasks)]
-    return template("main/better_life.html.j2", today_task=today_task)
+    today_prediction = predictions[date_as_int % len(predictions)]
+    return template("main/better_life.html.j2", today_task=today_task, today_prediction=today_prediction)
