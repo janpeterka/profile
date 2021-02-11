@@ -34,3 +34,25 @@ tasks = [
     "clear your workplace.",
     "fix something in your living place.",
 ]
+
+# Sources
+# https://www.lesswrong.com/posts/x4GmqcwjFTnWeRiud/16-types-of-useful-predictions
+predictions = [
+    "predict how long a task will take you.",
+    "predict how you'll feel in an upcoming situation.",
+    "predict your performance on a task or goal.",
+    "predict how your audience will react to a particular social media post",
+    "when you try a new activity or technique, predict how much value you'll get out of it.",
+    "when you make a purchase, predict how much value you'll get out of it.",
+    "predict how someone will answer a question about themselves.",
+    "predict how much progress you can make on a problem in five minutes.",
+    "predict whether the data in your memory supports your impression.",
+    "pick one expert source and predict how they will answer a question.",
+    "when you meet someone new, take note of your first impressions of him. Predict how likely it is that, once you've gotten to know him better, you will consider your first impressions of him to have been accurate.",
+    "predict how your Facebook friends will respond to a poll.",
+    "predict how well you understand someone's position by trying to paraphrase it back to him.",
+    "when you have a disagreement with someone, predict how likely it is that a neutral third party will side with you after the issue is explained to her.",
+    "predict whether a surprising piece of news will turn out to be true.",
+    "predict whether a quick online search will turn up any credible sources supporting a particular claim.",
+
+]

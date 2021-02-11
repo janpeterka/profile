@@ -3,6 +3,14 @@ body {
     font-family: Nunito;
 }
 
+.hidden {
+    display: none;
+}
+
+.tab[data-active="false"] {
+    display: none;
+}
+
 .footer {
     position: fixed;
     left: 0;
