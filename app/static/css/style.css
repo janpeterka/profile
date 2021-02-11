@@ -11,6 +11,10 @@ body {
     display: none;
 }
 
+.tab-link[data-active="true"] {
+    font-weight: bolder;
+}
+
 .footer {
     position: fixed;
     left: 0;
