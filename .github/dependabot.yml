@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: python-dotenv
+    versions:
+    - 0.16.0
+  - dependency-name: jsonpickle
+    versions:
+    - 1.5.1
+    - 2.0.0
