@@ -25,10 +25,10 @@
         },
         "babel": {
             "hashes": [
-                "sha256:9d35c22fcc79893c3ecc85ac4a56cde1ecf3f19c540bba0922308a6c06ca6fa5",
-                "sha256:da031ab54472314f210b0adcff1588ee5d1d1d0ba4dbd07b94dba82bde791e05"
+                "sha256:ab49e12b91d937cd11f0b67cb259a57ab4ad2b59ac7a3b41d6c06c0ac5b0def9",
+                "sha256:bc0c176f9f6a994582230df350aa6e05ba2ebe4b3ac317eab29d9be5d2768da0"
             ],
-            "version": "==2.9.0"
+            "version": "==2.9.1"
         },
         "bcrypt": {
             "hashes": [
@@ -206,11 +206,11 @@
         },
         "flask-migrate": {
             "hashes": [
-                "sha256:26871836a4e46d2d590cf8e558c6d60039e1c003079b240689d845726b6b57c0",
-                "sha256:ae2f05671588762dd83a21d8b18c51fe355e86783e24594995ff8d7380dffe38"
+                "sha256:a6607e66bf1d68489b2281ead5caa6fdf7a21b71984fae922ef5f915ac45bbcb",
+                "sha256:fadbc9cbf782e95cf7cea63ceff11972d55f534bef86dae4d9d0ab9372bd62dd"
             ],
             "index": "pypi",
-            "version": "==2.7.0"
+            "version": "==3.0.0"
         },
         "flask-principal": {
             "hashes": [
@@ -250,6 +250,7 @@
         },
         "gunicorn": {
             "hashes": [
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
                 "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
             ],
             "index": "pypi",
@@ -425,10 +426,10 @@
         },
         "six": {
             "hashes": [
-                "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
-                "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"
+                "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
+                "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "version": "==1.15.0"
+            "version": "==1.16.0"
         },
         "soupsieve": {
             "hashes": [
