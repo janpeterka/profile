@@ -67,6 +67,11 @@ def create_app():
 
     poetry_create_module(application)
 
+    # Blog module
+    from app.blueprints.blog import create_module as blog_create_module
+
+    blog_create_module(application)
+
     # Integrations module
     from app.blueprints.integrations import create_module as integrations_create_module
 
