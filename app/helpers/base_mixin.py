@@ -9,36 +9,26 @@ from app import db
 class BaseMixin(object):
     @classmethod
     def load(cls, *args, **kwargs):
-        if "id" in kwargs:
-            # e.g. Author.load(id=1)
-            cls_id = kwargs["id"]
-        else:
-            # e.g. Author.load(1)
-            cls_id = args[0]
-        my_object = db.session.query(cls).filter(cls.id == cls_id).first()
-        return my_object
+        cls_id = kwargs["id"] if "id" in kwargs else args[0]
+        return db.session.query(cls).filter(cls.id == cls_id).first()
 
     @classmethod
     def load_all(cls, *args, **kwargs):
-        object_array = db.session.query(cls).all()
-        return object_array
+        return db.session.query(cls).all()
 
     @classmethod
     def load_last(cls):
-        last_object = db.session.query(cls).all()[-1]
-        return last_object
+        return db.session.query(cls).all()[-1]
 
     @classmethod
     def load_by_name(cls, name):
-        first_object = db.session.query(cls).filter(cls.name == name).first()
-        return first_object
+        return db.session.query(cls).filter(cls.name == name).first()
 
     @classmethod
     def load_by_attribute(cls, attribute, value):
-        first_object = (
+        return (
             db.session.query(cls).filter(getattr(cls, attribute) == value).first()
         )
-        return first_object
 
     def edit(self, **kwargs):
         try:
@@ -99,10 +89,9 @@ class BaseMixin(object):
     # trochu hack, vraci vsechny attributes, kter nezacinaji "_" - tedy nejsou "private"
     @property
     def json(self):
-        attributes = []
-        for attr in self.__dict__.keys():
-            if not attr.startswith("_"):
-                attributes.append(attr)
+        attributes = [
+            attr for attr in self.__dict__.keys() if not attr.startswith("_")
+        ]
 
         return {attr: getattr(self, attr) for attr in attributes}
 

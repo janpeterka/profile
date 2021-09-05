@@ -64,5 +64,4 @@ def post():
 @poetry_blueprint.route("/poetry/images/<item_id>", methods=["GET"])
 def images(item_id):
     item = Poetry.load(item_id)
-    file = FileHandler(folder="images/poetry").show(item)
-    return file
+    return FileHandler(folder="images/poetry").show(item)

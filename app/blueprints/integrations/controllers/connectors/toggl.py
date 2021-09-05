@@ -59,11 +59,7 @@ class TogglConnector(Connector):
         response = requests.get(self.full_url)
         response = json.loads(response.text)
 
-        if "data" in response:
-            response = response["data"]
-        else:
-            response = None
-
+        response = response["data"] if "data" in response else None
         return response
 
     def start_time_entry(self, project_name, entry_name=None):
@@ -87,10 +83,12 @@ class TogglConnector(Connector):
         if entry_name is None:
             entry_name = ""
 
-        data = {}
-        data["time_entry"] = {}
-        data["time_entry"]["description"] = entry_name
-        data["time_entry"]["created_with"] = "profile_integrations"
+        data = {
+            'time_entry': {
+                'description': entry_name,
+                'created_with': 'profile_integrations',
+            }
+        }
 
         if project_id is not None:
             data["time_entry"]["pid"] = project_id
@@ -140,11 +138,7 @@ class TogglConnector(Connector):
 
         entries = json.loads(response.text)
 
-        entry_descriptions = []
-        for entry in entries:
-            entry_descriptions.append(entry["description"])
-            # print(entry["description"])
-
+        entry_descriptions = [entry["description"] for entry in entries]
         if response.status_code == requests.codes.ok:
             return entry_descriptions
         else:
