@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 
 from flask_charts import GoogleCharts
-from flask_babelex import Babel
+# from flask_babelex import Babel
 
 
 # mail = Mail()
@@ -14,7 +14,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 security = Security()
 charts = GoogleCharts()
-babel = Babel()
+# babel = Babel()
 
 
 from app.blueprints.auth.models.roles import Role
@@ -49,7 +49,7 @@ def create_app():
     migrate.init_app(application, db)
     security.init_app(application, user_datastore)
     charts.init_app(application)
-    babel.init_app(application)
+    # babel.init_app(application)
 
     # MODULES
     # Auth module
