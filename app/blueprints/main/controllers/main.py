@@ -15,23 +15,18 @@ main_blueprint = Blueprint("main", __name__)
 
 
 # MAIN
-@main_blueprint.route("/", methods=["GET"])
+@main_blueprint.route("/")
 def main():
     return template("main/dashboard.html.j2")
 
 
-@main_blueprint.route("/newsletter", methods=["GET"])
-def show_newsletter():
-    return template("main/newsletter_subscribe.html.j2")
-
-
-@main_blueprint.route("/portfolio", methods=["GET"])
+@main_blueprint.route("/portfolio")
 def show_portfolio():
     return template("main/portfolio.html.j2")
 
 
-@main_blueprint.route("/songbooks", methods=["GET"])
-@main_blueprint.route("/zpevniky", methods=["GET"])
+@main_blueprint.route("/songbooks")
+@main_blueprint.route("/zpevniky")
 def show_songbooks():
     folders = [
         Folder(folder[0])
@@ -50,7 +45,7 @@ def show_songbooks():
     return template("main/songbooks.html.j2", folders=folders)
 
 
-@main_blueprint.route("/songbooks/<filename>", methods=["GET"])
+@main_blueprint.route("/songbooks/<filename>")
 def download_songbook_file(filename):
     return send_file(
         SONGBOOKS_DIR + filename.split(".")[0] + "/" + filename,
@@ -58,17 +53,23 @@ def download_songbook_file(filename):
     )
 
 
-@main_blueprint.route("/studentske_projekty", methods=["GET"])
+@main_blueprint.route("/studenti")
+@main_blueprint.route("/studentske_projekty")
 def show_student_projects():
     return template("main/student_projects.html.j2")
 
 
-@main_blueprint.route("/better", methods=["GET"])
+@main_blueprint.route("/better")
 def show_better_life():
     import datetime
     from ..better_life_tasks import tasks
     from ..better_life_tasks import predictions
-    date_as_int = int(datetime.date.today().strftime('%Y%m%d'))
+
+    date_as_int = int(datetime.date.today().strftime("%Y%m%d"))
     today_task = tasks[date_as_int % len(tasks)]
     today_prediction = predictions[date_as_int % len(predictions)]
-    return template("main/better_life.html.j2", today_task=today_task, today_prediction=today_prediction)
+    return template(
+        "main/better_life.html.j2",
+        today_task=today_task,
+        today_prediction=today_prediction,
+    )

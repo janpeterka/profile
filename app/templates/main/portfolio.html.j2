@@ -1,78 +1,72 @@
 {% extends "base.html.j2" %}
-{% block title %}
-    Portfolio
-{% endblock %}
+{% block title %} portfolio {% endblock %}
 
 {% block content %}
     {% include('navbar.html.j2') %}
-    <div class="container">
-        <div class="main">
-            {% import "portfolio_item.html.j2" as item %}
+    <div class="container mt-5">
+        <div class="mt-5">
+            <div style="text-align: center;">    
+                <span style="font-weight: bold;"> dělám věci </span> <br>
+                <span > někdy </span> <br>
+                <em> když se mi chce </em> <br>
+                <br>
+            </div>
 
-            <div class="portfolio-item">
-                {{ item.title(
-                    "ketocalc"
-                    )
-                }}
+            <div class="mt-3" style="text-align: left;">    
+                <span> udělal jsem třeba </span><br>
+                
+                <br>
+                
+                <span class="ml-2">
+                    <a href="ketokalkulacka.cz" style="color: grey;">
+                        <strong> ketokalkulačku </strong> 
+                    </a>
+                </span><br>
+                <span class="ml-2 font-italic">
+                    která pomáhá lidem se speciální dietou
+                </span><br>
+            
+                <br>
 
-                {{ item.about(
-                    "Aplikace pro výpočet a správu surovin, receptů a diet ketogenní diety"
-                    )
-                }}
+                <span class="ml-2">
+                    <a href="skautskakucharka.cz" style="color: grey;">
+                        <strong> skautskou kuchařku </strong> 
+                    </a>
+                </span><br>
+                <span class="ml-2 font-italic">
+                    která usnadňuje vytváření a správu jídelníčků a nákupů
+                </span><br>
+                <span class="ml-2 font-italic">
+                    na (zejména) velkých akcích - kurzy, tábory
+                </span><br>
 
-                {{ item.motivation([
-                    "projekt na předmět Databázové aplikace",
-                    "na žádost známé, které podobný nástroj chyběl",
-                    "možnost vytvořit první větší projekt a naučit se, co všechno je pro něj třeba"
-                    ])
-                }}
+                <br>
 
-                {{ item.technology({
-                    "Databáze": [
-                        "MySQL"
-                        ],
-                    "Backend": [
-                        "Python 3",
-                        "Flask",
-                        "SQLAlchemy"
-                        ],
-                    "Frontend": [
-                        "jQuery",
-                        "Bootstrap",
-                        "stimulus"
-                        ],
-                    "Administrace": [
-                        "Heroku",
-                        "gunicorn",
-                        "nginx, Apache", 
-                        "FreeBSD->Debian",
-                        "git (via github)"
-                        ]
-                 })
-                }}
+                <span> a pár hovadinek </span><br>
 
-                {{ item.functions([
-                        "výpočet receptu (pomocí numpy)",
-                        "registrace a přihlašování"
-                    ])
-                }}
+                <br>
+                
+                <span class="ml-2">
+                    <a href="{{url_for('main.show_better_life')}}" style="color: grey;">
+                        <strong> náhodná věc, kterou si můžu zlepšit den </strong> 
+                    </a>
+                </span><br>
 
-                {{ item.learned([
-                    "Napojení na MySQL pomocí ORM SQLAlchemy",
-                    "Framework Flask",
-                    "prevence SQL injection ve Flasku",
-                    "Google OAuth",
-                    "základy AJAX",
-                    "posílání emailů z webové aplikace",
-                    "deploy over Heroku",
-                    "deploy na Flask-Gunicorn webserveru na domácím FreeBSD/Debian serveru"
-                    ])
-                }}
+            </div>
 
-                {{ item.time(
-                    "cca 150 hodin"
-                    )
-                }}
+            <div class="mt-4" style="text-align: right;">    
+                <span> baví mě hrát na kytaru </span><br>
+                
+                <br>
+                
+                <span class="ml-2">
+                    proto tu mám 
+                    <a href="{{ url_for('main.show_songbooks') }}" style="color: grey;">
+                        <strong> zpěvníky </strong> 
+                    </a>
+                </span><br>
+            
+                <br>
             </div>
         </div>
     </div>

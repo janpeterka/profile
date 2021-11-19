@@ -6,7 +6,6 @@ from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 
 from flask_charts import GoogleCharts
-# from flask_babelex import Babel
 
 
 # mail = Mail()
@@ -14,11 +13,10 @@ db = SQLAlchemy()
 migrate = Migrate()
 security = Security()
 charts = GoogleCharts()
-# babel = Babel()
 
 
-from app.blueprints.auth.models.roles import Role
-from app.blueprints.auth.models.users import User
+from app.blueprints.auth.models.roles import Role  # noqa: E402
+from app.blueprints.auth.models.users import User  # noqa: E402
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 

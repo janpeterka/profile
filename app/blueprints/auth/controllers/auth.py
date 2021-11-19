@@ -8,6 +8,7 @@ from flask import Blueprint
 
 auth_blueprint = Blueprint("auth", __name__)
 
+
 # MAIN
 @auth_blueprint.route("/user", methods=["GET"])
 def main():
