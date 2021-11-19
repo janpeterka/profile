@@ -63,14 +63,14 @@ def create_app():
     main_create_module(application)
 
     # Poetry module
-    from app.blueprints.poetry import create_module as poetry_create_module
+    # from app.blueprints.poetry import create_module as poetry_create_module
 
-    poetry_create_module(application)
+    # poetry_create_module(application)
 
     # Integrations module
-    from app.blueprints.integrations import create_module as integrations_create_module
+    # from app.blueprints.integrations import create_module as integrations_create_module
 
-    integrations_create_module(application)
+    # integrations_create_module(application)
 
     # Education module
     # from app.blueprints.education import create_module as education_create_module
