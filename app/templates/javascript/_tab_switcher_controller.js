@@ -1,5 +1,4 @@
-<script type="text/javascript">
-  application.register("tab-switcher", class extends Stimulus.Controller {
+Stimulus.register("tab-switcher", class extends Controller {
     static get targets() {
       return ["tabList"]
     }
@@ -40,4 +39,3 @@
   }
 
 })
-</script>

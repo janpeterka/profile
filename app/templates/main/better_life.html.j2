@@ -1,25 +1,30 @@
 {% extends "base.html.j2" %}
-{% block title %}Improve your life{% endblock %}
+{% block title %} Improve your life {% endblock %}
+
 {% block script %}
-    {% include 'javascript/stimulus.js.html' %}
-    {% include 'javascript/tab_switcher_controller.js.html' %}
+	{% from 'javascript/stimulus.js.html' import stimulus %}
+	{{ stimulus('tab-switcher') }}
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center"  data-controller="tab-switcher" >
-    	<div class="mt-5" style="color: grey;" data-tab-switcher-target="tabList"></div>
-    	<div style="margin-top: 23%">
-	    	<div class="tab" data-tab="task" data-active=true >
-	    		<h5>Today you can:</h5>
-	    		<h1>{{ today_task }}</h1>
-	    	</div>
 
-	    	<div class="tab" data-tab="prediction" data-active=false >
-	    		<h5>Today you can:</h5>
-	    		<h1>{{ today_prediction }}</h1>
-	    	</div>
+<div class="text-center"  data-controller="tab-switcher" >
+	
+	<div class="mt-5" style="color: grey;" data-tab-switcher-target="tabList"></div>
+	
+	<div style="margin-top: 23%">
+    	<div class="tab" data-tab="task" data-active=true >
+    		<h5>Today you can:</h5>
+    		<h1>{{ today_task }}</h1>
     	</div>
-    	
-    </div>
+
+    	<div class="tab" data-tab="prediction" data-active=false >
+    		<h5>Today you can:</h5>
+    		<h1>{{ today_prediction }}</h1>
+    	</div>
+	</div>
+	
+</div>
+
 {% endblock %}
 
