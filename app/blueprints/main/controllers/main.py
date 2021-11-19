@@ -33,12 +33,13 @@ def show_portfolio():
 @main_blueprint.route("/songbooks", methods=["GET"])
 @main_blueprint.route("/zpevniky", methods=["GET"])
 def show_songbooks():
-    folders = []
-    for folder in os.walk(SONGBOOKS_DIR):
-        if os.path.isdir(folder[0]):
-            folders.append(Folder(folder[0]))
+    folders = [
+        Folder(folder[0])
+        for folder in os.walk(SONGBOOKS_DIR)
+        if os.path.isdir(folder[0])
+    ]
 
-    if len(folders) > 0:
+    if folders:
         del folders[0]
 
     for folder in folders:

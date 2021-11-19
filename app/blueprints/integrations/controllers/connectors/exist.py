@@ -36,10 +36,7 @@ class ExistConnector(Connector):
     def add_attribute(self, attribute):
         self.api = "https://exist.io/api/1/attributes/custom/append/"
 
-        data = {}
-        data["value"] = attribute
-        data["date"] = datetime.date.today().isoformat()
-
+        data = {'value': attribute, 'date': datetime.date.today().isoformat()}
         response = requests.post(self.api, json=data)
         response = self.do_request("post", json=data)
 

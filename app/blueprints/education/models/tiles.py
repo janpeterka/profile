@@ -72,8 +72,6 @@ class Tile():
 
     @property
     def surrounding_tiles(self):
-        surrounding_tiles = []
-
         grid = [
             [-1, -1],
             [-1, 0],
@@ -85,20 +83,14 @@ class Tile():
             [+1, +1],
         ]
 
-        for positions in grid:
-            if (
+        return [self.world.grid[self.y + positions[1] - 1][
+                        self.x + positions[0] - 1
+                    ] for positions in grid if (
                 self.x + positions[0] > 0
                 and self.x + positions[0] <= self.world.size
                 and self.x + positions[1] > 0
                 and self.y + positions[1] <= self.world.size
-            ):
-                surrounding_tiles.append(
-                    self.world.grid[self.y + positions[1] - 1][
-                        self.x + positions[0] - 1
-                    ]
-                )
-
-        return surrounding_tiles
+            )]
 
     # HTML
 

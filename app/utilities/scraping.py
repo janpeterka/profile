@@ -40,8 +40,7 @@ def log_error(e):
 
 
 def get_html(url):
-    html = BeautifulSoup(simple_get(url), "html.parser", from_encoding="utf-8")
-    return html
+    return BeautifulSoup(simple_get(url), "html.parser", from_encoding="utf-8")
 
 
 def is_link(link):

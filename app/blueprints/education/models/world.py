@@ -121,10 +121,9 @@ class World():
         ]
 
         for tile in populated_tiles:
-            if tile.has_settleable:
-                if random.random() > 0.5:
-                    random.choice(tile.surrounding_settleable_tiles).add_human()
-                    tile.kill_human()
+            if tile.has_settleable and random.random() > 0.5:
+                random.choice(tile.surrounding_settleable_tiles).add_human()
+                tile.kill_human()
 
     @property
     def score(self):
