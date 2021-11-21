@@ -1,28 +1,11 @@
 {% extends "base.html.j2" %}
-{% block title %}
-    Tato stránka neexistuje
-{% endblock %}
-
-{% block style %}{% endblock %}
-
-{% block script %}{% endblock %}
+{% block title %} tato stránka neexistuje {% endblock %}
 
 {% block content %}
-    {% include('navbar.html.j2') %}
-    <div class="container">
-        <div class="col-12 error_main">
-            {# <table><tr> #}
-            {# <td class="col-2"></td> #}
+    
+<h1> tato stránka neexistuje.</h1>
+jste si jistí, že jste chtěli být tady? pokud ano, <a href="/feedback">napište mi</a> a já to zkusím rychle opravit.
+<p> zatím se můžete vrátit na <a href="/">hlavní stránku</a></p>
 
-            {# <td class="col-8"> #}
-            	<h1>Tato stránka neexistuje.</h1>
-                {# Jste si jistí, že jste chtěli být tady? Pokud ano, <a href="/feedback">napište mi</a> a já to zkusím rychle opravit. #}
-                <p>Zatím se můžete vrátit na <a href="/">hlavní stránku</a></p>
-            {# </td> #}
-
-            {# <td class="col-2"></td> #}
-            {# </tr></table> #}
-        </div>  
-    </div>
 {% endblock %}
 

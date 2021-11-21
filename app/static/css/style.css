@@ -1,3 +1,8 @@
+@import "atomic.css";
+@import "icons.css";
+
+@import "worldgen.css";
+
 body {
     background-color: #eee;
     font-family: Nunito;
@@ -48,49 +53,4 @@ body {
 
 .btn{
     margin-top: 0.5em;
-}
-
-
-/* Atomic styles */
-.w-70 {
-    width: 90%;
-}
-
-.h-30r {
-    height: 30rem;
-}
-
-.m-top-1r {
-    margin-top: 1rem;
-}
-
-
-/* Education | Genetic world generation */
-
-.tile {
-    border: solid 1px;
-    text-align: center;
-}
-
-.tile.water {
-    background-color: blue;
-}
-
-.tile.land {
-    background-color: lightgreen;
-}
-
-.tile.rock {
-    background-color: grey;
-}
-
-.tile.forrest {
-    background-color: green;
-}
-
-.tile.human {
-    /*border-color: red !important;*/
-    border-width: 2px;
-    color: red;
-    font-weight: bold;
 }

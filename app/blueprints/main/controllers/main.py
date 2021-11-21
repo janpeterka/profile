@@ -60,7 +60,7 @@ def show_student_projects():
 
 
 @main_blueprint.route("/better")
-def show_better_life():
+def better():
     import datetime
     from ..better_life_tasks import tasks
     from ..better_life_tasks import predictions

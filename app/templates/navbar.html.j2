@@ -1,6 +1,6 @@
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/"> Jan Peterka </a>
+    <a class="navbar-brand" href="/"> jan peterka </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,36 +16,48 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              	Projekty
+              	projekty
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="https://ketokalkulacka.cz" target="_blank"> Ketokalkulačka </a>
-              <a class="dropdown-item" href="https://skautskakucharka.cz" target="_blank"> Skautská kuchařka </a>
+              <a class="dropdown-item" href="https://ketokalkulacka.cz" target="_blank"> ketokalkulačka </a>
+              <a class="dropdown-item" href="https://skautskakucharka.cz" target="_blank"> skautská kuchařka </a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                miniprojekty
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('main.better')}}"> today </a>
             </div>
           </li>
           
+{#           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Rozdělané projekty
+                rozdělané projekty
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {# <a class="dropdown-item" href="/poetry/">Texty v krajině</a> #}
-              <a class="dropdown-item" href="/better">Today</a>
+              <a class="dropdown-item" href="{{ poetry.main }}"> básně hor </a>
+              <a class="dropdown-item" href="https://uu.jpeterka.cz" target="_blank"> untraversed universe </a>
             </div>
-            
           </li>
+#}
 
-{#            <li class="nav-item dropdown">
+{#          
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Školní
+              školní
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('WorldView:index') }}">Svět</a>
             </div>
-          </li> #}
+          </li>
+#}
 
           <li class="nav-item">
-            <a class="nav-link" href="/songbooks"> Zpěvníky </a>
+            <a class="nav-link" href="/songbooks"> zpěvníky </a>
           </li>
         </ul>
 

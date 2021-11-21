@@ -8,63 +8,62 @@
 {% endblock %}
 
 {% block content %}
-	{% include('navbar.html.j2') %}
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<form class="form-group" action="/poetry/post" method="post" enctype=multipart/form-data>
-					{{ form.csrf_token }}
-		            {% from "_form_element.html.j2" import render_field %}
-		            {{ render_field(form.name, "form-control") }}
-		            {{ render_field(form.created_by, "form-control") }}
-		            {{ render_field(form.latitude, "form-control") }}
-		            {{ render_field(form.longitude, "form-control") }}
-		            {{ render_field(form.photo, "form-control") }}
-		            {{ render_field(form.submit, "btn btn-primary", False) }}
-				</form>
-			</div>
-			<div class="col">
-    			<div id="map" style="width: 30rem; height: 20rem; margin-top: 1.5rem;"></div>
-			</div>
-		</div>
-		
+
+<div class="row">
+	<div class="col">
+		<form class="form-group" action="/poetry/post" method="post" enctype=multipart/form-data>
+			{{ form.csrf_token }}
+            {% from "_form_element.html.j2" import render_field %}
+            {{ render_field(form.name, "form-control") }}
+            {{ render_field(form.created_by, "form-control") }}
+            {{ render_field(form.latitude, "form-control") }}
+            {{ render_field(form.longitude, "form-control") }}
+            {{ render_field(form.photo, "form-control") }}
+            {{ render_field(form.submit, "btn btn-primary", False) }}
+		</form>
 	</div>
-	<script type="text/javascript">
-      	/* Create map */
-		var center = SMap.Coords.fromWGS84(14.41, 50.08);
-		map = new SMap(JAK.gel("map"), center, 10);
-		map.addDefaultLayer(SMap.DEF_BASE).enable();
-		map.addDefaultControls();
-		map.addControl(new SMap.Control.Sync()); /* Aby mapa reagovala na změnu velikosti průhledu */
-		var mouse = new SMap.Control.Mouse(SMap.MOUSE_PAN | SMap.MOUSE_WHEEL | SMap.MOUSE_ZOOM); /* Ovládání myší */
-		map.addControl(mouse);
-		map.getSignals().addListener(window, "map-click", this.click); /* Při signálu kliknutí volat tuto funkci */  
-		layer = add_marker_layer(map);
+	<div class="col">
+		<div id="map" style="width: 30rem; height: 20rem; margin-top: 1.5rem;"></div>
+	</div>
+</div>
+		
+<script type="text/javascript">
+  	/* Create map */
+	var center = SMap.Coords.fromWGS84(14.41, 50.08);
+	map = new SMap(JAK.gel("map"), center, 10);
+	map.addDefaultLayer(SMap.DEF_BASE).enable();
+	map.addDefaultControls();
+	map.addControl(new SMap.Control.Sync()); /* Aby mapa reagovala na změnu velikosti průhledu */
+	var mouse = new SMap.Control.Mouse(SMap.MOUSE_PAN | SMap.MOUSE_WHEEL | SMap.MOUSE_ZOOM); /* Ovládání myší */
+	map.addControl(mouse);
+	map.getSignals().addListener(window, "map-click", this.click); /* Při signálu kliknutí volat tuto funkci */  
+	layer = add_marker_layer(map);
 
-		function click(e, elm) { /* Došlo ke kliknutí, spočítáme kde */
-		    var coords = SMap.Coords.fromEvent(e.data.event, map);
-		    console.log("Kliknuto na " + coords.toWGS84(2).reverse().join(" "));
-		    layer.removeAll()
-	    	add_marker(layer, coords, "Klik")
-		}
+	function click(e, elm) { /* Došlo ke kliknutí, spočítáme kde */
+	    var coords = SMap.Coords.fromEvent(e.data.event, map);
+	    console.log("Kliknuto na " + coords.toWGS84(2).reverse().join(" "));
+	    layer.removeAll()
+    	add_marker(layer, coords, "Klik")
+	}
 
 
-    function add_marker_layer(map){
-		var layer = new SMap.Layer.Marker();
-		map.addLayer(layer);
-		layer.enable();
-		return layer;
-    }
+function add_marker_layer(map){
+	var layer = new SMap.Layer.Marker();
+	map.addLayer(layer);
+	layer.enable();
+	return layer;
+}
 
-    function add_marker(layer, coords, name){
-      	var options = {};
-		var marker = new SMap.Marker(coords, name, options);
-		marker.decorate(SMap.Marker.Feature.Draggable);
-		layer.addMarker(marker);
-		$("#latitude")[0].value = marker._coords.x
-		$("#longitude")[0].value = marker._coords.y
-		return marker
-    }
-	</script>
+function add_marker(layer, coords, name){
+  	var options = {};
+	var marker = new SMap.Marker(coords, name, options);
+	marker.decorate(SMap.Marker.Feature.Draggable);
+	layer.addMarker(marker);
+	$("#latitude")[0].value = marker._coords.x
+	$("#longitude")[0].value = marker._coords.y
+	return marker
+}
+</script>
+
 {% endblock %}
 
