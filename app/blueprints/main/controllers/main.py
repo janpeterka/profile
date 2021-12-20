@@ -17,7 +17,7 @@ main_blueprint = Blueprint("main", __name__)
 # MAIN
 @main_blueprint.route("/")
 def main():
-    return template("main/dashboard.html.j2")
+    return template("main/portfolio.html.j2")
 
 
 @main_blueprint.route("/portfolio")

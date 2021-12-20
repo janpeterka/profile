@@ -2,7 +2,7 @@
 {% block title %} zpěvníky {% endblock %}
 
 {% block style %}
-    <style type="text/css" media="screen">
+{#     <style type="text/css" media="screen">
     div.main {
         margin-left: 5%; 
     }
@@ -25,13 +25,17 @@
         box-shadow: 0 0 0 1px rgba(89,105,129,.1),0 1px 3px 0 rgba(89,105,129,.1),0 1px 2px 0 rgba(0,0,0,.05);
         padding: 0.7rem 2.1rem;
     }
-    </style>    
+    </style>   #}  
 {% endblock %}
 
 {% block content %}
 <div class="mt-5">
+    můj zpěvník: <br>
+    <a class="songbook" href="/songbooks/Zpevnik.pdf" download> pdf </a> | 
+    <a class="songbook" href="/songbooks/Zpevnik.docx" download> docx </a> <br>
 
-    {% for folder in folders %}
+
+    {# {% for folder in folders %}
 
     	<div class="row col-8">
             <span class="songbook col-8" >
@@ -53,11 +57,11 @@
                 </span>
 
             </span>
-    	</div>
+    	</div> #}
 	
-    {% endfor %}
+    {# {% endfor %} #}
 
-    <div style="margin-left: 10px; margin-top: 10px">
+    <div class="mt-4">
         a další zpěvníky, které se hodí: <br>
         <a href="http://nerez.szm.com/nerez.pdf"> Nerez </a> <br>
         <a href="https://www.pixy.cz/downloads/zpevniky/ZPEVNIK_nerez.pdf"> Nerez podruhé [pixy]</a> <br>
