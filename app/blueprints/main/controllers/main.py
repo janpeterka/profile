@@ -49,7 +49,7 @@ def show_songbooks():
 def download_songbook_file(filename):
     return send_file(
         SONGBOOKS_DIR + filename.split(".")[0] + "/" + filename,
-        attachment_filename=filename,
+        download_name=filename,
     )
 
 
