@@ -11,5 +11,5 @@ git pull
 pipenv sync
 
 # upgrade database
-pipenv run flask db upgrade
+# pipenv run flask db upgrade
 
