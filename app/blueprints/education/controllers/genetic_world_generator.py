@@ -38,11 +38,11 @@ class WorldView(FlaskView):
         return response
 
     def index(self):
-        from flask_charts import Chart
+        # from flask_charts import Chart
 
-        my_chart = Chart("LineChart", "my_chart")
-        my_chart.data.add_column("number", "vol")
-        my_chart.data.add_column("number", "value")
+        # my_chart = Chart("LineChart", "my_chart")
+        # my_chart.data.add_column("number", "vol")
+        # my_chart.data.add_column("number", "value")
 
         total_resources_scores = session.get("total_resources_scores")
 
@@ -53,7 +53,7 @@ class WorldView(FlaskView):
         return template(
             "education/genetic_world_generator.html.j2",
             world=self.world,
-            chart=my_chart,
+            # chart=my_chart,
         )
 
     # def before_new_world(self):

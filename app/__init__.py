@@ -5,14 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 
-from flask_charts import GoogleCharts
-
 
 # mail = Mail()
 db = SQLAlchemy()
 migrate = Migrate()
 security = Security()
-charts = GoogleCharts()
 
 
 from app.blueprints.auth.models.roles import Role  # noqa: E402
@@ -46,7 +43,6 @@ def create_app():
     db.init_app(application)
     migrate.init_app(application, db)
     security.init_app(application, user_datastore)
-    charts.init_app(application)
     # babel.init_app(application)
 
     # MODULES
